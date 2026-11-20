@@ -8,7 +8,7 @@ export function Impact() {
   const root = useRef<HTMLElement>(null);
 
   useSectionMotion(root, (el) => {
-    // The gold panel opens out from an inset card to full bleed.
+    // The brand panel opens out from an inset card to full bleed.
     gsap.fromTo(
       el.querySelector("[data-panel]"),
       { clipPath: "inset(7% 5% 7% 5% round 28px)" },
@@ -43,9 +43,9 @@ export function Impact() {
 
   return (
     <section ref={root} aria-labelledby="impact-heading">
-      <div data-panel className="bg-gold py-24 text-[#0a0a0a] md:py-36">
+      <div data-panel className="bg-brand py-24 text-background md:py-36">
         <div className="container-site">
-          <h2 id="impact-heading" className="eyebrow text-[#0a0a0a]!">
+          <h2 id="impact-heading" className="eyebrow text-background!">
             {impact.heading}
           </h2>
           <dl className="mt-12 grid gap-12 sm:grid-cols-3">

@@ -11,7 +11,6 @@
   --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
   --font-heading: var(--font-archivo);
-  --color-gold: var(--gold);
   --color-brand: var(--brand);
   --color-highlight: var(--highlight);
   --font-serif: var(--font-instrument-serif), ui-serif, Georgia, serif;
@@ -40,33 +39,33 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* The site is dark-only: one palette, gold accent. */
+/* v1 / v2 palette: light sage with a deep teal accent. v3 and v4 override
+   these tokens through their own theme wrappers. */
 :root {
-  --gold: #c9a84c;
-  /* Accent used by shared chrome (header, footer, newsletter, eyebrows). */
-  --brand: var(--gold);
+  /* Accent used by buttons, eyebrows, the impact panel and shared chrome. */
+  --brand: #0e6e62;
   /* Secondary accent; only the v4 theme sets its own. */
-  --highlight: var(--gold);
-  --background: #0a0a0a;
-  --foreground: #f5f5f4;
-  --card: #161616;
-  --card-foreground: #f5f5f4;
-  --popover: #161616;
-  --popover-foreground: #f5f5f4;
-  --primary: var(--gold);
-  --primary-foreground: #0a0a0a;
-  --secondary: #1f1f1f;
-  --secondary-foreground: #f5f5f4;
-  --muted: #1f1f1f;
-  --muted-foreground: #a1a1a1;
-  --accent: #1f1f1f;
-  --accent-foreground: #f5f5f4;
+  --highlight: #f2c14e;
+  --background: #eef3f0;
+  --foreground: #10201c;
+  --card: #f8fbf9;
+  --card-foreground: #10201c;
+  --popover: #f8fbf9;
+  --popover-foreground: #10201c;
+  --primary: var(--brand);
+  --primary-foreground: #f8fbf9;
+  --secondary: #dfe8e3;
+  --secondary-foreground: #10201c;
+  --muted: #dfe8e3;
+  --muted-foreground: #4f625b;
+  --accent: #dfe8e3;
+  --accent-foreground: #10201c;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: rgb(255 255 255 / 0.1);
-  --input: rgb(255 255 255 / 0.25);
-  --ring: var(--gold);
+  --border: rgb(16 32 28 / 0.12);
+  --input: rgb(16 32 28 / 0.28);
+  --ring: var(--brand);
   --radius: 0.3rem;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 /* Archivo's width axis gives the condensed display face and the wide eyebrow face. */

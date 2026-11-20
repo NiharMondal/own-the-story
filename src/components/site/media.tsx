@@ -38,6 +38,9 @@ const TONES = {
   dusk: "radial-gradient(45% 55% at 70% 35%, rgb(255 190 150 / 0.55), transparent 70%), linear-gradient(170deg, #4b3a5a, #1d1622)",
   sage: "radial-gradient(55% 55% at 40% 30%, rgb(236 240 220 / 0.7), transparent 70%), linear-gradient(160deg, #7d8a6c, #2f3529)",
   sand: "radial-gradient(50% 55% at 60% 35%, rgb(255 246 230 / 0.85), transparent 72%), linear-gradient(160deg, #c9b08c, #6e5a40)",
+  // Light backdrops for the light v1 / v2 palette, where text sits on the picture.
+  mist: "radial-gradient(40% 55% at 68% 38%, rgb(255 255 255 / 0.75), transparent 70%), radial-gradient(60% 70% at 85% 90%, rgb(14 110 98 / 0.35), transparent 70%), linear-gradient(160deg, #cfe0d8, #8fb3a6)",
+  dawn: "radial-gradient(30% 40% at 64% 48%, rgb(255 250 240 / 0.85), transparent 70%), radial-gradient(70% 60% at 90% 100%, rgb(232 160 120 / 0.45), transparent 70%), linear-gradient(160deg, #e6ddd0, #b7a58f)",
 } as const;
 
 const GRAIN =

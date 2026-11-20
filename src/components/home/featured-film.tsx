@@ -55,7 +55,7 @@ export function FeaturedFilm() {
           <button
             type="button"
             aria-label="Play film (player not connected yet)"
-            className="absolute top-1/2 left-1/2 grid size-14 -translate-1/2 place-items-center rounded-sm bg-gold text-black shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110 md:size-20"
+            className="absolute top-1/2 left-1/2 grid size-14 -translate-1/2 place-items-center rounded-sm bg-brand text-primary-foreground shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110 md:size-20"
           >
             <Play className="size-6 md:size-7" />
           </button>

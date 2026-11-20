@@ -43,7 +43,7 @@ function Odometer({ value }: { value: number }) {
 
 /**
  * v2 impact — "slot reels".
- * The page itself warms from black to gold as the section scrolls in, then
+ * The page itself warms from the page color to the brand color as the section scrolls in, then
  * every digit spins like an odometer and settles on its value.
  */
 export function ImpactV2() {
@@ -52,12 +52,15 @@ export function ImpactV2() {
   useSectionMotion(root, (el) => {
     const q = gsap.utils.selector(el);
 
+    // Sweep from the page color to gold, reading the live theme tokens.
+    const tokens = getComputedStyle(el);
+    const page = tokens.getPropertyValue("--background").trim();
     gsap.fromTo(
       q("[data-panel]"),
-      { backgroundColor: "#0a0a0a", color: "#f5f5f4" },
+      { backgroundColor: page, color: tokens.getPropertyValue("--foreground").trim() },
       {
-        backgroundColor: "#c9a84c",
-        color: "#0a0a0a",
+        backgroundColor: tokens.getPropertyValue("--brand").trim(),
+        color: page,
         ease: "none",
         scrollTrigger: { trigger: el, start: "top 85%", end: "top 30%", scrub: true },
       },
@@ -94,7 +97,7 @@ export function ImpactV2() {
 
   return (
     <section ref={root} aria-labelledby="impact-heading-v2">
-      <div data-panel className="bg-gold py-24 text-[#0a0a0a] md:py-36">
+      <div data-panel className="bg-brand py-24 text-background md:py-36">
         <div className="container-site">
           <h2 id="impact-heading-v2" className="eyebrow text-current!">
             {impact.heading}

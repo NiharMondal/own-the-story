@@ -29,7 +29,7 @@ export function Programs() {
             <li key={item.title} className="group">
               <Media tone={item.tone} hoverZoom className="aspect-[4/5]" />
               <div data-copy className="mt-6">
-                <p className="font-expanded text-sm font-semibold tracking-[0.12em] text-gold">
+                <p className="font-expanded text-sm font-semibold tracking-[0.12em] text-brand">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <h3 className="mt-2 text-xl font-semibold tracking-[-0.01em] md:text-[1.4rem]">{item.title}</h3>

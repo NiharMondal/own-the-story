@@ -8,7 +8,7 @@ import { blurIn, gsap, scatterChars, useSectionMotion } from "@/lib/motion";
 /**
  * v2 programs — "filmstrip".
  * Desktop: the section pins and the four cards travel sideways as you scroll,
- * each picture panning inside its frame; a gold bar tracks progress.
+ * each picture panning inside its frame; a brand-color bar tracks progress.
  * Smaller screens: cards stack and focus in.
  */
 export function ProgramsV2() {
@@ -75,8 +75,8 @@ export function ProgramsV2() {
             {programs.heading}
           </h2>
         </div>
-        <div aria-hidden className="mb-4 hidden h-0.5 w-48 shrink-0 bg-white/15 lg:block">
-          <div data-progress className="h-full origin-left bg-gold" />
+        <div aria-hidden className="mb-4 hidden h-0.5 w-48 shrink-0 bg-foreground/15 lg:block">
+          <div data-progress className="h-full origin-left bg-brand" />
         </div>
       </div>
 
@@ -86,7 +86,7 @@ export function ProgramsV2() {
             <li key={item.title} data-card className="group lg:w-[38vw] lg:max-w-[36rem]">
               <Media tone={item.tone} hoverZoom className="aspect-[4/5] lg:aspect-[4/3]" />
               <div className="mt-6 flex gap-5">
-                <p className="font-condensed text-5xl leading-none font-extrabold text-gold">
+                <p className="font-condensed text-5xl leading-none font-extrabold text-brand">
                   {String(i + 1).padStart(2, "0")}
                 </p>
                 <div>

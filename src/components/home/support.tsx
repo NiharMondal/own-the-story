@@ -38,10 +38,10 @@ export function Support() {
   return (
     <section id="donate" ref={root} className="scroll-mt-20">
       <div data-frame className="relative isolate flex min-h-[40rem] items-center overflow-hidden py-24 md:min-h-[46rem]">
-        <Media tone={support.tone} label={false} className="absolute inset-0 -z-10" />
+        <Media tone={support.backdropTone} label={false} className="absolute inset-0 -z-10" />
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgb(10_10_10/0.85),rgb(10_10_10/0.3)_65%,transparent)]"
+          className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--background)_85%,transparent),color-mix(in_srgb,var(--background)_30%,transparent)_65%,transparent)]"
         />
 
         <div className="container-site">
@@ -50,13 +50,13 @@ export function Support() {
             <br />
             {support.title[1]}
           </h2>
-          <p data-fade className="mt-8 max-w-xl text-lg leading-relaxed text-white/90 md:text-[1.4rem]">
+          <p data-fade className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/85 md:text-[1.4rem]">
             {support.body}
           </p>
           <a data-fade href={support.cta.href} className={`${buttonVariants({ size: "xl" })} mt-8`}>
             {support.cta.label}
           </a>
-          <p data-fade className="mt-8 text-sm text-white/60">
+          <p data-fade className="mt-8 text-sm text-muted-foreground">
             {support.note}
           </p>
         </div>

@@ -23,7 +23,7 @@ export const hero = {
   primaryCta: { label: "Join the Movement", href: "#programs" },
   secondaryCta: { label: "Learn More", href: "#about" },
   watch: { label: "Watch the film", href: "#film" },
-  tone: "spotlight" as MediaTone,
+  tone: "mist" as MediaTone,
 };
 
 export const mission = {
@@ -124,6 +124,8 @@ export const support = {
   cta: { label: "Donate", href: "#donate" },
   note: "Your gift goes to a 501(c)(3) nonprofit and is tax-deductible to the extent allowed by law.",
   tone: "crimson" as MediaTone,
+  /** Full-bleed backdrop behind the text in "/" and "/v2" (v3 uses `tone` for its card). */
+  backdropTone: "dawn" as MediaTone,
 };
 
 export const newsletter = {

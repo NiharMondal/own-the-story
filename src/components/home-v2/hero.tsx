@@ -97,7 +97,7 @@ export function HeroV2() {
         </div>
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(90deg,rgb(10_10_10/0.85),rgb(10_10_10/0.35)_55%,transparent),linear-gradient(0deg,#0a0a0a,transparent_40%)]"
+          className="absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--background)_85%,transparent),color-mix(in_srgb,var(--background)_35%,transparent)_55%,transparent),linear-gradient(0deg,var(--background),transparent_40%)]"
         />
       </div>
       <div data-hero-shade aria-hidden className="absolute inset-0 -z-10 bg-background opacity-0" />
@@ -113,7 +113,7 @@ export function HeroV2() {
             {hero.title[1]}
           </h1>
           <div data-step-aside>
-            <p data-intro data-sub className="mt-8 max-w-xl text-lg leading-relaxed text-white/90 md:text-[1.4rem]">
+            <p data-intro data-sub className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/85 md:text-[1.4rem]">
               {hero.intro}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
@@ -126,7 +126,7 @@ export function HeroV2() {
                 href={hero.secondaryCta.href}
                 className={cn(
                   buttonVariants({ size: "xl", variant: "outline" }),
-                  "border-white/80 bg-transparent text-white hover:bg-white hover:text-black dark:bg-transparent",
+                  "border-foreground/60 bg-transparent text-foreground hover:bg-foreground hover:text-background dark:bg-transparent",
                 )}
               >
                 {hero.secondaryCta.label}
@@ -140,7 +140,7 @@ export function HeroV2() {
             Placeholder image
           </span>
           <a data-intro data-pop href={hero.watch.href} className="group flex items-center gap-3 font-semibold">
-            <span className="grid size-11 place-items-center rounded-full bg-gold text-black transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
+            <span className="grid size-11 place-items-center rounded-full bg-brand text-primary-foreground transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
               <Play className="size-5" />
             </span>
             {hero.watch.label}
@@ -151,10 +151,10 @@ export function HeroV2() {
             type="button"
             onClick={toggleBackground}
             aria-pressed={paused}
-            className="flex items-center gap-3 text-sm text-white/70 transition-colors hover:text-white"
+            className="flex items-center gap-3 text-sm text-foreground/70 transition-colors hover:text-foreground"
           >
             {paused ? "Play background video" : "Pause background video"}
-            <span className="grid size-11 place-items-center rounded-full bg-black/40 backdrop-blur-sm">
+            <span className="grid size-11 place-items-center rounded-full bg-background/70 backdrop-blur-sm">
               {paused ? <Play className="size-5" /> : <Pause className="size-5" />}
             </span>
           </button>

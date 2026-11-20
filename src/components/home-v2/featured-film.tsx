@@ -85,7 +85,7 @@ export function FeaturedFilmV2() {
             data-ui
             type="button"
             aria-label="Play film (player not connected yet)"
-            className="absolute top-1/2 left-1/2 -mt-7 -ml-7 grid size-14 place-items-center rounded-full bg-gold text-black shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110 md:-mt-10 md:-ml-10 md:size-20"
+            className="absolute top-1/2 left-1/2 -mt-7 -ml-7 grid size-14 place-items-center rounded-full bg-brand text-primary-foreground shadow-2xl transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:scale-110 md:-mt-10 md:-ml-10 md:size-20"
           >
             <Play className="size-6 md:size-7" />
           </button>

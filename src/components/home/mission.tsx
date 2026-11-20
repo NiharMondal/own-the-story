@@ -42,7 +42,7 @@ export function Mission() {
           <a
             data-fade
             href={mission.link.href}
-            className="group inline-flex items-center gap-2 self-start font-semibold text-slate-300 transition-colors hover:text-white md:self-auto"
+            className="group inline-flex items-center gap-2 self-start font-semibold text-muted-foreground transition-colors hover:text-foreground md:self-auto"
           >
             {mission.link.label}
             <ArrowRight className="size-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" />

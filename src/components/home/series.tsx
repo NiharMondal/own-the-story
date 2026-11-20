@@ -30,7 +30,7 @@ export function Series() {
           <a
             data-view-all
             href={series.viewAll.href}
-            className="group inline-flex shrink-0 items-center gap-2 font-semibold text-slate-300 transition-colors hover:text-white"
+            className="group inline-flex shrink-0 items-center gap-2 font-semibold text-muted-foreground transition-colors hover:text-foreground"
           >
             {series.viewAll.label}
             <ArrowRight className="size-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" />
@@ -43,12 +43,12 @@ export function Series() {
               <Media tone={part.tone} hoverZoom={!part.comingSoon} className="aspect-[16/9]">
                 {part.comingSoon && (
                   <div className="absolute inset-0 grid place-items-center bg-black/65">
-                    <span className="eyebrow">Coming soon</span>
+                    <span className="eyebrow text-white!">Coming soon</span>
                   </div>
                 )}
               </Media>
               <div data-copy className={cn("mt-6", part.comingSoon && "opacity-60")}>
-                <p className="font-expanded text-sm font-semibold tracking-[0.12em] text-gold uppercase">
+                <p className="font-expanded text-sm font-semibold tracking-[0.12em] text-brand uppercase">
                   Part {String(i + 1).padStart(2, "0")} / 12
                 </p>
                 <h3 className="mt-3 text-xl font-semibold tracking-[-0.01em] md:text-[1.4rem]">{part.title}</h3>
