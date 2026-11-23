@@ -1,83 +1,65 @@
-"use client";
+import { Eye, Smartphone, Ticket } from "lucide-react";
+import { Media } from "@/components/site/media";
+import { labs } from "@/content/home-v4";
+import { CtaLink } from "./cta-link";
+import { RevealSection } from "./reveal";
+import { SectionHeading } from "./section-heading";
 
-import { useRef } from "react";
-import { Media, type MediaTone } from "@/components/site/media";
-import { programs } from "@/content/home";
-import { fadeUp, gsap, revealLines, useSectionMotion } from "@/lib/motion";
-
-const TONES: MediaTone[] = ["dusk", "clay", "sage", "ember"];
+const ICONS = { eye: Eye, phone: Smartphone, ticket: Ticket };
 
 /**
- * v3 programs — "stacked deck".
- * Each program is a sticky card; the next one slides up over it while the one
- * underneath sinks back and dims, so the four build into a stack.
+ * v4 programs: the three labs from the live site as equal cards, then the
+ * Prepare → Present → Engage → Lead framework as a numbered path.
  */
-export function ProgramsV3() {
-  const root = useRef<HTMLElement>(null);
-
-  useSectionMotion(root, (el) => {
-    const q = gsap.utils.selector(el);
-    fadeUp(q(".eyebrow"), { trigger: el });
-    revealLines(q("h2")[0]);
-
-    const cards = q("[data-stack-card]");
-    cards.forEach((card, i) => {
-      gsap.fromTo(
-        card.querySelector("[data-media-inner]"),
-        { yPercent: -8, scale: 1.2 },
-        {
-          yPercent: 8,
-          scale: 1.2,
-          ease: "none",
-          scrollTrigger: { trigger: card, start: "top bottom", end: "bottom top", scrub: true },
-        },
-      );
-
-      const next = cards[i + 1]?.parentElement;
-      if (!next) return;
-      const cover = { trigger: next, start: "top bottom", end: "top 25%", scrub: true };
-      gsap.to(card, { scale: 0.9, ease: "none", scrollTrigger: cover });
-      gsap.to(card.querySelector("[data-dim]"), { opacity: 0.35, ease: "none", scrollTrigger: cover });
-    });
-  });
-
+export function ProgramsV4() {
   return (
-    <section id="programs" ref={root} className="scroll-mt-20 pb-28 md:pb-40">
+    <RevealSection id="programs" aria-labelledby="programs-heading-v4" className="scroll-mt-20 py-20 md:py-28">
       <div className="container-site">
-        <div className="grid gap-6 lg:grid-cols-12 lg:gap-10">
-          <p className="eyebrow lg:col-span-3 lg:pt-5">{programs.eyebrow}</p>
-          <h2 className="font-serif text-[clamp(2.75rem,6vw,5.5rem)] leading-none font-normal tracking-[-0.025em] lg:col-span-9">
-            {programs.heading}
-          </h2>
-        </div>
+        <SectionHeading id="programs-heading-v4" eyebrow={labs.eyebrow} heading={labs.heading} body={labs.body}>
+          <CtaLink variant="secondary" href={labs.cta.href}>
+            {labs.cta.label}
+          </CtaLink>
+        </SectionHeading>
 
-        <ol className="mt-16">
-          {programs.items.map((item, i) => (
-            <li
-              key={item.title}
-              className="sticky mb-8 last:mb-0 md:mb-[14vh]"
-              style={{ top: `calc(5.5rem + ${i} * 1.25rem)` }}
-            >
-              <article
-                data-stack-card
-                className="relative grid origin-top overflow-hidden rounded-[2rem] border border-border bg-card p-3 shadow-[0_-16px_40px_-28px_rgb(22_19_15/0.45)] md:grid-cols-2 md:p-4"
-              >
-                <Media tone={TONES[i % TONES.length]} className="aspect-[4/3] rounded-[1.5rem] md:aspect-auto md:min-h-[26rem]" />
-                <div className="flex flex-col justify-between gap-10 p-5 md:p-10">
-                  <p className="font-serif text-[clamp(4rem,8vw,7rem)] leading-none text-brand italic">
-                    {String(i + 1).padStart(2, "0")}
+        <ol className="mt-12 grid gap-6 md:grid-cols-3">
+          {labs.items.map((lab) => {
+            const Icon = ICONS[lab.icon];
+            return (
+              <li key={lab.title} data-reveal className="flex flex-col overflow-hidden rounded-xl border border-border bg-card">
+                <Media tone={lab.tone} className="aspect-16/10" />
+                <div className="flex flex-1 flex-col p-6 md:p-7">
+                  <p className="flex items-center gap-2 text-sm font-semibold text-brand">
+                    <Icon className="size-4" aria-hidden />
+                    {lab.kicker}
                   </p>
-                  <div>
-                    <h3 className="font-serif text-4xl font-normal tracking-[-0.01em] md:text-5xl">{item.title}</h3>
-                    <p className="mt-4 max-w-md text-lg leading-relaxed text-muted-foreground">{item.body}</p>
-                  </div>
+                  <h3 className="mt-3 text-2xl font-bold tracking-[-0.01em]">{lab.title}</h3>
+                  <p className="mt-3 flex-1 leading-relaxed text-muted-foreground">{lab.body}</p>
+                  <ul aria-label="Skills" className="mt-6 flex flex-wrap gap-2">
+                    {lab.skills.map((skill) => (
+                      <li key={skill} className="rounded-full bg-secondary px-3 py-1 text-sm font-medium">
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-                <div data-dim aria-hidden className="pointer-events-none absolute inset-0 bg-foreground opacity-0" />
-              </article>
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ol>
+
+        <div data-reveal className="mt-14 rounded-xl bg-foreground p-6 text-background md:p-10">
+          <h3 className="text-sm font-semibold tracking-[0.14em] text-highlight uppercase">The framework</h3>
+          <ol className="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            {labs.steps.map((step, i) => (
+              <li key={step.title} className="relative">
+                <span className="text-sm font-semibold text-background/60 tabular-nums">0{i + 1}</span>
+                <p className="mt-1 text-2xl font-extrabold">{step.title}.</p>
+                <p className="mt-2 leading-relaxed text-background/75">{step.body}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
       </div>
-    </section>
+    </RevealSection>
   );
 }

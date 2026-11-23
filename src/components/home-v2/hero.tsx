@@ -3,18 +3,17 @@
 import { useRef, useState } from "react";
 import { Pause, Play } from "lucide-react";
 import { Media } from "@/components/site/media";
-import { buttonVariants } from "@/components/ui/button";
 import { hero } from "@/content/home";
-import { EASE, gsap, prefersReducedMotion, SplitText, useGSAP } from "@/lib/motion";
-import { cn } from "@/lib/utils";
+import { EASE, fadeUp, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion";
+import { PillLink } from "./pill-link";
 
 /**
- * v2 hero — "projector".
- * Intro: the picture opens from a thin slit like a projector gate, letters flip
- * up on their baseline, the subtitle focuses in word by word.
- * Scroll: the section pins and the title rushes toward the viewer (zoom-through).
+ * v3 hero — "front page".
+ * A giant serif masthead tilts up into place line by line; the film still
+ * unrolls from the bottom. On scroll the two title lines slide apart in
+ * opposite directions while the still rises faster than the page.
  */
-export function HeroV2() {
+export function HeroV3() {
   const root = useRef<HTMLElement>(null);
   const drift = useRef<gsap.core.Tween | null>(null);
   const [paused, setPaused] = useState(false);
@@ -24,61 +23,37 @@ export function HeroV2() {
       const el = root.current;
       if (!el || prefersReducedMotion()) return;
       const q = gsap.utils.selector(el);
-      const title = q("h1")[0];
+      const card = q("[data-card]")[0];
 
       gsap.set(q("[data-intro]"), { visibility: "visible" });
 
-      const chars = SplitText.create(title, { type: "words,chars" }).chars;
-      const words = SplitText.create(q("[data-sub]")[0], { type: "words" }).words;
+      gsap.fromTo(
+        q("[data-line]"),
+        { yPercent: 110, rotation: 5 },
+        { yPercent: 0, rotation: 0, transformOrigin: "0% 100%", duration: 1.6, ease: EASE, stagger: 0.14, delay: 0.2 },
+      );
+      fadeUp(q("[data-hero-fade]"), { immediate: true, delay: 0.8, stagger: 0.1, y: 24 });
+      gsap.fromTo(
+        card,
+        { clipPath: "inset(100% 0% 0% 0% round 2rem)" },
+        { clipPath: "inset(0% 0% 0% 0% round 2rem)", duration: 1.6, ease: "expo.inOut", delay: 0.45 },
+      );
+      gsap.from(q("[data-card] [data-media-inner]"), { scale: 1.4, duration: 2.4, ease: EASE, delay: 0.45 });
 
-      gsap
-        .timeline({ defaults: { ease: EASE } })
-        .fromTo(
-          q("[data-shutter]"),
-          { clipPath: "inset(49.6% 0% 49.6% 0%)" },
-          { clipPath: "inset(0% 0% 0% 0%)", duration: 1.9, ease: "expo.inOut" },
-        )
-        .from(q("[data-shutter] [data-media-inner]"), { scale: 1.45, duration: 2.6 }, 0.25)
-        .from(
-          chars,
-          {
-            rotationX: -100,
-            yPercent: 50,
-            autoAlpha: 0,
-            transformOrigin: "50% 100%",
-            transformPerspective: 900,
-            duration: 1.4,
-            stagger: 0.035,
-          },
-          0.95,
-        )
-        .from(words, { autoAlpha: 0, filter: "blur(12px)", y: 12, duration: 1.1, stagger: 0.025 }, 1.4)
-        .fromTo(
-          q("[data-pop]"),
-          { autoAlpha: 0, scale: 0.92, y: 16 },
-          { autoAlpha: 1, scale: 1, y: 0, duration: 1.1, stagger: 0.08 },
-          1.75,
-        );
-
-      // Ambient drift stands in for the background film.
       drift.current = gsap.to(q("[data-hero-drift]"), {
-        scale: 1.1,
-        xPercent: 2,
-        duration: 18,
+        scale: 1.08,
+        xPercent: -2,
+        duration: 16,
         ease: "sine.inOut",
         repeat: -1,
         yoyo: true,
       });
 
-      // Pinned zoom-through: copy steps aside, the title flies past the camera.
-      gsap.set(title, { transformOrigin: "32% 55%" });
       gsap
-        .timeline({ scrollTrigger: { trigger: el, start: "top top", end: "+=110%", pin: true, scrub: true } })
-        .to(q("[data-step-aside]"), { autoAlpha: 0, y: -40, duration: 0.3, ease: "none" }, 0)
-        .to(title, { scale: 7, duration: 1, ease: "power2.in" }, 0)
-        .to(title, { autoAlpha: 0, duration: 0.2, ease: "none" }, 0.8)
-        .to(q("[data-shutter]"), { scale: 0.92, ease: "none", duration: 1 }, 0)
-        .to(q("[data-hero-shade]"), { opacity: 1, ease: "none", duration: 0.5 }, 0.5);
+        .timeline({ scrollTrigger: { trigger: el, start: "top top", end: "bottom top", scrub: true } })
+        .to(q("[data-drift-x='left']"), { xPercent: -12, ease: "none" }, 0)
+        .to(q("[data-drift-x='right']"), { xPercent: 10, ease: "none" }, 0)
+        .to(card, { yPercent: -14, ease: "none" }, 0);
     },
     { scope: root },
   );
@@ -90,74 +65,67 @@ export function HeroV2() {
   };
 
   return (
-    <section ref={root} className="relative isolate flex min-h-svh items-end overflow-hidden pb-20 md:pb-28">
-      <div data-shutter data-intro className="absolute inset-0 -z-10">
-        <div data-hero-drift className="absolute inset-0">
-          <Media tone={hero.tone} label={false} priority className="absolute inset-0" />
-        </div>
-        <div
-          aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--background)_85%,transparent),color-mix(in_srgb,var(--background)_35%,transparent)_55%,transparent),linear-gradient(0deg,var(--background),transparent_40%)]"
-        />
-      </div>
-      <div data-hero-shade aria-hidden className="absolute inset-0 -z-10 bg-background opacity-0" />
+    <section ref={root} className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-28">
+      <div className="container-site">
+        <h1
+          data-intro
+          className="font-serif text-[clamp(4.75rem,17vw,17rem)] leading-[0.82] font-normal tracking-[-0.035em]"
+        >
+          <span data-drift-x="left" className="block overflow-clip pb-[0.2em] -mb-[0.14em]">
+            <span data-line className="block">
+              {hero.title[0]}
+            </span>
+          </span>
+          <span data-drift-x="right" className="block overflow-clip pb-[0.2em] -mb-[0.14em] text-right md:pr-[4vw]">
+            <span data-line className="block text-brand italic">
+              {hero.title[1]}
+            </span>
+          </span>
+        </h1>
 
-      <div className="container-site flex flex-col gap-12 lg:flex-row lg:items-end lg:justify-between">
-        <div className="max-w-2xl">
-          <h1
-            data-intro
-            className="font-condensed text-[clamp(4.5rem,13vw,10.5rem)] leading-[0.86] font-extrabold tracking-[-0.01em] uppercase"
-          >
-            {hero.title[0]}
-            <br />
-            {hero.title[1]}
-          </h1>
-          <div data-step-aside>
-            <p data-intro data-sub className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/85 md:text-[1.4rem]">
+        <div className="mt-12 grid gap-12 md:mt-16 lg:grid-cols-12 lg:items-end">
+          <div className="lg:col-span-4">
+            <p data-intro data-hero-fade className="text-xl leading-relaxed md:text-2xl">
               {hero.intro}
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a data-intro data-pop href={hero.primaryCta.href} className={buttonVariants({ size: "xl" })}>
-                {hero.primaryCta.label}
-              </a>
-              <a
-                data-intro
-                data-pop
-                href={hero.secondaryCta.href}
-                className={cn(
-                  buttonVariants({ size: "xl", variant: "outline" }),
-                  "border-foreground/60 bg-transparent text-foreground hover:bg-foreground hover:text-background dark:bg-transparent",
-                )}
-              >
+            <div data-intro data-hero-fade className="mt-9 flex flex-wrap items-center gap-x-7 gap-y-5">
+              <PillLink href={hero.primaryCta.href}>{hero.primaryCta.label}</PillLink>
+              <PillLink variant="ghost" href={hero.secondaryCta.href}>
                 {hero.secondaryCta.label}
-              </a>
+              </PillLink>
             </div>
           </div>
-        </div>
 
-        <div data-step-aside className="flex flex-col items-start gap-4 lg:items-end">
-          <span data-intro data-pop className="rounded-sm bg-black/50 px-2 py-1 text-xs text-white/70 backdrop-blur-sm">
-            Placeholder image
-          </span>
-          <a data-intro data-pop href={hero.watch.href} className="group flex items-center gap-3 font-semibold">
-            <span className="grid size-11 place-items-center rounded-full bg-brand text-primary-foreground transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
-              <Play className="size-5" />
-            </span>
-            {hero.watch.label}
-          </a>
-          <button
-            data-intro
-            data-pop
-            type="button"
-            onClick={toggleBackground}
-            aria-pressed={paused}
-            className="flex items-center gap-3 text-sm text-foreground/70 transition-colors hover:text-foreground"
-          >
-            {paused ? "Play background video" : "Pause background video"}
-            <span className="grid size-11 place-items-center rounded-full bg-background/70 backdrop-blur-sm">
-              {paused ? <Play className="size-5" /> : <Pause className="size-5" />}
-            </span>
-          </button>
+          <div className="lg:col-span-7 lg:col-start-6">
+            <div data-card data-intro className="relative aspect-[16/10] overflow-hidden rounded-[2rem]">
+              <div data-hero-drift className="absolute inset-0">
+                <Media tone="ember" label={false} priority className="absolute inset-0" />
+              </div>
+              <span className="absolute top-4 left-4 rounded-full bg-background/85 px-3 py-1 text-xs text-foreground/80 backdrop-blur-sm">
+                Placeholder image
+              </span>
+              <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 md:inset-x-6 md:bottom-6">
+                <a
+                  href={hero.watch.href}
+                  className="group flex items-center gap-3 rounded-full bg-background/90 py-2 pr-5 pl-2 text-sm font-semibold backdrop-blur-sm transition-colors hover:bg-background"
+                >
+                  <span className="grid size-10 place-items-center rounded-full bg-brand text-primary-foreground transition-[scale] duration-500 group-hover:scale-110">
+                    <Play className="size-4 fill-current" />
+                  </span>
+                  {hero.watch.label}
+                </a>
+                <button
+                  type="button"
+                  onClick={toggleBackground}
+                  aria-pressed={paused}
+                  aria-label={paused ? "Play background video" : "Pause background video"}
+                  className="grid size-12 place-items-center rounded-full bg-background/90 backdrop-blur-sm transition-colors hover:bg-background"
+                >
+                  {paused ? <Play className="size-4 fill-current" /> : <Pause className="size-4 fill-current" />}
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

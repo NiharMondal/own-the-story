@@ -1,54 +1,63 @@
 "use client";
 
 import { useRef } from "react";
-import { ArrowRight } from "lucide-react";
 import { mission } from "@/content/home";
-import { gsap, SplitText, useSectionMotion } from "@/lib/motion";
+import { fadeUp, gsap, useSectionMotion } from "@/lib/motion";
+import { PillLink } from "./pill-link";
+
+const MARKER = "color-mix(in oklab, var(--brand) 28%, transparent)";
 
 /**
- * v2 mission — "focus pull".
- * The section pins and the statement comes into focus word by word as you
- * scroll, like a lens being racked; the supporting copy follows once it lands.
+ * v3 mission — "highlighter".
+ * A brand-tinted marker sweeps under the statement as you scroll. The span
+ * stays one inline box (box-decoration-break: slice), so the sweep runs line
+ * by line, the way a pen would.
  */
-export function MissionV2() {
+export function MissionV3() {
   const root = useRef<HTMLElement>(null);
 
   useSectionMotion(root, (el) => {
     const q = gsap.utils.selector(el);
-    const words = SplitText.create(q("h2")[0], { type: "words" }).words;
-
-    gsap
-      .timeline({ scrollTrigger: { trigger: el, start: "top top", end: "+=140%", pin: true, scrub: true } })
-      .from(q(".eyebrow"), { autoAlpha: 0, letterSpacing: "0.6em", duration: 0.3, ease: "power2.out" })
-      .fromTo(
-        words,
-        { opacity: 0.06, filter: "blur(10px)", y: 18 },
-        { opacity: 1, filter: "blur(0px)", y: 0, duration: 0.35, stagger: 0.06, ease: "power1.out" },
-        0.1,
-      )
-      .from(q("[data-fade]"), { autoAlpha: 0, y: 30, duration: 0.3, stagger: 0.1, ease: "power2.out" })
-      .to({}, { duration: 0.2 }); // brief hold before releasing the pin
+    fadeUp(q(".eyebrow"), { trigger: el });
+    fadeUp(q("h2"), { trigger: el, y: 50 });
+    gsap.fromTo(
+      q("[data-mark]"),
+      { backgroundSize: "0% 0.3em" },
+      {
+        backgroundSize: "100% 0.3em",
+        ease: "none",
+        scrollTrigger: { trigger: q("h2")[0], start: "top 75%", end: "bottom 40%", scrub: true },
+      },
+    );
+    fadeUp(q("[data-fade]"), { trigger: q("[data-fade]")[0], stagger: 0.12 });
   });
 
   return (
-    <section id="about" ref={root} className="flex min-h-svh items-center py-28">
-      <div className="container-site max-w-[66rem]">
-        <p className="eyebrow">{mission.eyebrow}</p>
-        <h2 className="mt-6 text-[clamp(2rem,4.4vw,3.5rem)] leading-[1.1] font-bold tracking-[-0.025em]">
-          {mission.statement}
-        </h2>
-        <div className="mt-10 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-          <p data-fade className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-[1.35rem]">
-            {mission.body}
-          </p>
-          <a
-            data-fade
-            href={mission.link.href}
-            className="group inline-flex items-center gap-2 self-start font-semibold text-muted-foreground transition-colors hover:text-foreground md:self-auto"
-          >
-            {mission.link.label}
-            <ArrowRight className="size-5 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-x-1.5" />
-          </a>
+    <section id="about" ref={root} className="scroll-mt-20 py-28 md:py-44">
+      <div className="container-site grid gap-8 lg:grid-cols-12 lg:gap-10">
+        <p className="eyebrow lg:col-span-3 lg:pt-5">{mission.eyebrow}</p>
+        <div className="lg:col-span-9">
+          <h2 className="font-serif text-[clamp(2.4rem,5.2vw,4.75rem)] leading-[1.06] font-normal tracking-[-0.02em]">
+            <span
+              data-mark
+              className="bg-no-repeat [box-decoration-break:slice]"
+              style={{
+                backgroundImage: `linear-gradient(${MARKER}, ${MARKER})`,
+                backgroundPosition: "0 88%",
+                backgroundSize: "100% 0.3em",
+              }}
+            >
+              {mission.statement}
+            </span>
+          </h2>
+          <div className="mt-12 flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+            <p data-fade className="max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
+              {mission.body}
+            </p>
+            <PillLink data-fade variant="ghost" href={mission.link.href} className="self-start md:self-auto">
+              {mission.link.label}
+            </PillLink>
+          </div>
         </div>
       </div>
     </section>

@@ -1,74 +1,107 @@
 "use client";
 
 import { useRef } from "react";
+import { ArrowUpRight } from "lucide-react";
 import { Media } from "@/components/site/media";
-import { buttonVariants } from "@/components/ui/button";
 import { support } from "@/content/home";
-import { gsap, SplitText, useSectionMotion } from "@/lib/motion";
+import { fadeUp, gsap, revealLines, useSectionMotion } from "@/lib/motion";
 
 /**
- * v2 support — "spotlight".
- * The section pins with a small circle of light on the page; scrolling
- * widens it until the whole cinema is lit, then the call to action rises in.
+ * v3 support — "poster".
+ * A vermilion block settles into place as it scrolls in, a tilted still swings
+ * through it, and the round Donate button is magnetic: it leans toward the cursor.
  */
-export function SupportV2() {
+export function SupportV3() {
   const root = useRef<HTMLElement>(null);
 
   useSectionMotion(root, (el) => {
     const q = gsap.utils.selector(el);
-    const chars = SplitText.create(q("h2")[0], { type: "words,chars" }).chars;
+    const magnet = q("[data-magnet]")[0] as HTMLElement;
 
-    gsap
-      .timeline({ scrollTrigger: { trigger: el, start: "top top", end: "+=130%", pin: true, scrub: true } })
-      .fromTo(
-        q("[data-iris]"),
-        { clipPath: "circle(8% at 62% 50%)" },
-        { clipPath: "circle(120% at 62% 50%)", ease: "power2.in", duration: 1 },
-      )
-      .fromTo(q("[data-iris] [data-media-inner]"), { scale: 1.6 }, { scale: 1, ease: "none", duration: 1 }, 0)
-      .from(chars, { yPercent: 100, autoAlpha: 0, duration: 0.35, stagger: 0.015, ease: "power3.out" }, 0.6)
-      .fromTo(
-        q("[data-fade]"),
-        { autoAlpha: 0, y: 30 },
-        { autoAlpha: 1, y: 0, duration: 0.3, stagger: 0.08, ease: "power2.out" },
-        0.85,
-      )
-      .to({}, { duration: 0.2 });
+    gsap.fromTo(
+      q("[data-block]"),
+      { scale: 0.94, borderRadius: "5rem" },
+      {
+        scale: 1,
+        borderRadius: "2.5rem",
+        ease: "none",
+        scrollTrigger: { trigger: el, start: "top bottom", end: "top 30%", scrub: true },
+      },
+    );
+    gsap.fromTo(
+      q("[data-tilt]"),
+      { rotation: -10, yPercent: 14 },
+      {
+        rotation: 5,
+        yPercent: -10,
+        ease: "none",
+        scrollTrigger: { trigger: el, start: "top bottom", end: "bottom top", scrub: true },
+      },
+    );
+    revealLines(q("h2")[0], { trigger: el });
+    fadeUp(q("[data-fade]"), { trigger: el, delay: 0.4, stagger: 0.12 });
+
+    const mm = gsap.matchMedia();
+    mm.add("(hover: hover) and (pointer: fine)", () => {
+      const xTo = gsap.quickTo(magnet, "x", { duration: 0.5, ease: "power3" });
+      const yTo = gsap.quickTo(magnet, "y", { duration: 0.5, ease: "power3" });
+      const move = (e: PointerEvent) => {
+        const r = magnet.getBoundingClientRect();
+        xTo((e.clientX - (r.left + r.width / 2)) * 0.35);
+        yTo((e.clientY - (r.top + r.height / 2)) * 0.35);
+      };
+      const leave = () => {
+        xTo(0);
+        yTo(0);
+      };
+      magnet.addEventListener("pointermove", move);
+      magnet.addEventListener("pointerleave", leave);
+      return () => {
+        magnet.removeEventListener("pointermove", move);
+        magnet.removeEventListener("pointerleave", leave);
+      };
+    });
   });
 
   return (
-    <section id="donate" ref={root} className="relative isolate flex min-h-svh items-center overflow-hidden py-24">
-      <div data-iris className="absolute inset-0 -z-10">
-        <Media tone={support.backdropTone} label={false} className="absolute inset-0" />
+    <section id="donate" ref={root} className="scroll-mt-20 px-3 md:px-5">
+      <div data-block className="relative isolate overflow-hidden rounded-[2.5rem] bg-brand text-primary-foreground">
         <div
           aria-hidden
-          className="absolute inset-0 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--background)_85%,transparent),color-mix(in_srgb,var(--background)_30%,transparent)_65%,transparent)]"
+          className="absolute inset-0 -z-10 bg-[radial-gradient(60%_80%_at_85%_15%,rgb(255_255_255/0.16),transparent_60%),radial-gradient(55%_65%_at_5%_100%,rgb(0_0_0/0.28),transparent_70%)]"
         />
-      </div>
+        <div className="container-site grid items-center gap-14 py-20 md:py-28 lg:grid-cols-12">
+          <div className="lg:col-span-7">
+            <h2 className="font-serif text-[clamp(3.75rem,9vw,8.5rem)] leading-[0.88] font-normal tracking-[-0.03em]">
+              {support.title[0]}
+              <br />
+              <em>{support.title[1]}</em>
+            </h2>
+            <p data-fade className="mt-8 max-w-xl text-lg leading-relaxed text-primary-foreground/90 md:text-xl">
+              {support.body}
+            </p>
+            <div data-fade className="mt-10 flex flex-wrap items-center gap-8">
+              <a
+                data-magnet
+                href={support.cta.href}
+                className="grid size-32 place-items-center rounded-full bg-foreground text-background transition-colors duration-300 hover:bg-background hover:text-foreground md:size-36"
+              >
+                <span className="flex flex-col items-center gap-1 text-lg font-semibold">
+                  {support.cta.label}
+                  <ArrowUpRight className="size-5" />
+                </span>
+              </a>
+              <p className="max-w-xs text-sm text-primary-foreground/80">{support.note}</p>
+            </div>
+          </div>
 
-      <div className="container-site">
-        <h2 className="font-condensed text-[clamp(3.5rem,8vw,6.5rem)] leading-[0.88] font-extrabold uppercase">
-          {support.title[0]}
-          <br />
-          {support.title[1]}
-        </h2>
-        <p data-fade className="mt-8 max-w-xl text-lg leading-relaxed text-foreground/85 md:text-[1.4rem]">
-          {support.body}
-        </p>
-        <a data-fade href={support.cta.href} className={`${buttonVariants({ size: "xl" })} mt-8`}>
-          {support.cta.label}
-        </a>
-        <p data-fade className="mt-8 text-sm text-muted-foreground">
-          {support.note}
-        </p>
+          <div className="lg:col-span-5">
+            <div data-tilt className="mx-auto max-w-sm">
+              <Media tone={support.tone} className="aspect-[4/5] rounded-[2rem] shadow-[0_40px_80px_-30px_rgb(0_0_0/0.6)]" />
+            </div>
+          </div>
+        </div>
       </div>
-
-      <span
-        data-fade
-        className="absolute right-6 bottom-6 rounded-sm bg-black/55 px-2 py-1 text-xs text-white/75 backdrop-blur-sm md:right-10"
-      >
-        Placeholder image
-      </span>
     </section>
   );
 }
