@@ -1,7 +1,7 @@
 import type { MediaTone } from "@/components/site/media";
 
 /*
- * Copy used only by "/v4". Shared pieces (film, impact, series, support,
+ * Copy used only by "/v3". Shared pieces (film, impact, series, support,
  * newsletter, footer) still come from ./home. Most of the text below is taken
  * from the live site (people4peopleproductions.org), tightened for scanning.
  */
@@ -11,7 +11,7 @@ export const links = {
   curriculum: "https://canva.link/curriculum-fd",
 };
 
-export const heroV4 = {
+export const heroV3 = {
   eyebrow: "Film media literacy for young people",
   title: "Own the story.",
   intro:
@@ -55,7 +55,7 @@ export const audiences: {
   ],
 };
 
-export const aboutV4 = {
+export const aboutV3 = {
   eyebrow: "Why we exist",
   heading: "Every story begins with perspective.",
   lead: "Students learn to see the world differently before they learn to film it.",
@@ -67,7 +67,8 @@ export const aboutV4 = {
     name: "Jennifer Saunders",
     role: "Founder",
     body: "Leads the charge in youth storytelling and film media literacy, and champions mental health equity.",
-    tone: "studio" as MediaTone,
+    // A backlit stand-in, not a portrait: replace with the founder's own photo.
+    tone: "silhouette" as MediaTone,
   },
 };
 
@@ -97,7 +98,7 @@ export const labs: {
       title: "Smartphone Guerilla Filmmaking",
       body: "Master on-location cinematography with the phone in your pocket, working with peers to capture authentic stories.",
       skills: ["Cinematography", "Collaboration"],
-      tone: "daylight",
+      tone: "dawn",
     },
     {
       icon: "ticket",
@@ -105,7 +106,7 @@ export const labs: {
       title: "Exhibition & Public Screenings",
       body: "Build a professional portfolio, learn event merchandising and host a community screening of your own work.",
       skills: ["Portfolio", "Workforce skills"],
-      tone: "amber",
+      tone: "stage",
     },
   ],
   steps: [

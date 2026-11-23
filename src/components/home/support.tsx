@@ -41,7 +41,7 @@ export function Support() {
         <Media tone={support.backdropTone} label={false} className="absolute inset-0 -z-10" />
         <div
           aria-hidden
-          className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--background)_85%,transparent),color-mix(in_srgb,var(--background)_30%,transparent)_65%,transparent)]"
+          className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--background)_85%,transparent),color-mix(in_srgb,var(--background)_60%,transparent)_55%,transparent_90%)]"
         />
 
         <div className="container-site">
@@ -61,9 +61,6 @@ export function Support() {
           </p>
         </div>
 
-        <span className="absolute right-6 bottom-6 rounded-sm bg-black/55 px-2 py-1 text-xs text-white/75 backdrop-blur-sm md:right-10">
-          Placeholder image
-        </span>
       </div>
     </section>
   );

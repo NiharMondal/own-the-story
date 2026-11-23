@@ -3,10 +3,10 @@ import { Media } from "@/components/site/media";
 import { film } from "@/content/home";
 import { RevealSection } from "./reveal";
 
-/** v4 featured film: a big, obvious play button and the credits underneath. */
-export function FilmV4() {
+/** v3 featured film: a big, obvious play button and the credits underneath. */
+export function FilmV3() {
   return (
-    <RevealSection id="film" aria-labelledby="film-heading-v4" className="scroll-mt-20 bg-card py-20 md:py-28">
+    <RevealSection id="film" aria-labelledby="film-heading-v3" className="scroll-mt-20 bg-card py-20 md:py-28">
       <div className="container-site">
         <div className="max-w-2xl">
           <p data-reveal className="eyebrow">
@@ -14,7 +14,7 @@ export function FilmV4() {
           </p>
           <h2
             data-reveal
-            id="film-heading-v4"
+            id="film-heading-v3"
             className="mt-4 text-[clamp(2rem,4.5vw,3.25rem)] leading-[1.05] font-bold tracking-[-0.02em]"
           >
             {film.heading[0]} <span className="text-brand">{film.heading[1]}</span>

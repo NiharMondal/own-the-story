@@ -1,45 +1,45 @@
 import { Play } from "lucide-react";
 import { Media } from "@/components/site/media";
 import { formatNumber, impact } from "@/content/home";
-import { heroV4 } from "@/content/home-v4";
+import { heroV3 } from "@/content/home-v3";
 import { CtaLink } from "./cta-link";
 import { RevealSection } from "./reveal";
 
 /**
- * v4 hero: say what this is, who it's for and what to do next, in one screen.
+ * v3 hero: say what this is, who it's for and what to do next, in one screen.
  * Headline + one sentence + two actions on the left, the film still on the
  * right, and the impact figures as a trust strip underneath.
  */
-export function HeroV4() {
+export function HeroV3() {
   return (
-    <RevealSection immediate aria-labelledby="hero-heading-v4" className="pt-28 pb-16 md:pt-36 md:pb-24">
+    <RevealSection immediate aria-labelledby="hero-heading-v3" className="pt-28 pb-16 md:pt-36 md:pb-24">
       <div className="container-site">
         <div className="grid items-center gap-12 lg:grid-cols-[1.05fr_1fr] lg:gap-16">
           <div>
             <p data-reveal className="inline-flex items-center gap-2 rounded-full bg-highlight px-3.5 py-1.5 text-sm font-semibold text-foreground">
-              {heroV4.eyebrow}
+              {heroV3.eyebrow}
             </p>
             <h1
               data-reveal
-              id="hero-heading-v4"
+              id="hero-heading-v3"
               className="mt-6 text-[clamp(3.25rem,8vw,6.5rem)] leading-[0.95] font-extrabold tracking-[-0.035em]"
             >
-              {heroV4.title}
+              {heroV3.title}
             </h1>
             <p data-reveal className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground md:text-xl">
-              {heroV4.intro}
+              {heroV3.intro}
             </p>
             <div data-reveal className="mt-9 flex flex-col gap-3 sm:flex-row sm:flex-wrap">
-              <CtaLink href={heroV4.primaryCta.href}>{heroV4.primaryCta.label}</CtaLink>
-              <CtaLink variant="secondary" href={heroV4.secondaryCta.href}>
-                {heroV4.secondaryCta.label}
+              <CtaLink href={heroV3.primaryCta.href}>{heroV3.primaryCta.label}</CtaLink>
+              <CtaLink variant="secondary" href={heroV3.secondaryCta.href}>
+                {heroV3.secondaryCta.label}
               </CtaLink>
             </div>
           </div>
 
           <div data-reveal className="relative">
             <Media
-              tone={heroV4.tone}
+              tone={heroV3.tone}
               priority
               alt="Students filming on location"
               className="aspect-4/3 rounded-2xl shadow-[0_30px_60px_-30px_rgb(20_22_28/0.45)]"

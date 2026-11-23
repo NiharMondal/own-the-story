@@ -1,6 +1,6 @@
 import { Eye, Smartphone, Ticket } from "lucide-react";
 import { Media } from "@/components/site/media";
-import { labs } from "@/content/home-v4";
+import { labs } from "@/content/home-v3";
 import { CtaLink } from "./cta-link";
 import { RevealSection } from "./reveal";
 import { SectionHeading } from "./section-heading";
@@ -8,14 +8,14 @@ import { SectionHeading } from "./section-heading";
 const ICONS = { eye: Eye, phone: Smartphone, ticket: Ticket };
 
 /**
- * v4 programs: the three labs from the live site as equal cards, then the
+ * v3 programs: the three labs from the live site as equal cards, then the
  * Prepare → Present → Engage → Lead framework as a numbered path.
  */
-export function ProgramsV4() {
+export function ProgramsV3() {
   return (
-    <RevealSection id="programs" aria-labelledby="programs-heading-v4" className="scroll-mt-20 py-20 md:py-28">
+    <RevealSection id="programs" aria-labelledby="programs-heading-v3" className="scroll-mt-20 py-20 md:py-28">
       <div className="container-site">
-        <SectionHeading id="programs-heading-v4" eyebrow={labs.eyebrow} heading={labs.heading} body={labs.body}>
+        <SectionHeading id="programs-heading-v3" eyebrow={labs.eyebrow} heading={labs.heading} body={labs.body}>
           <CtaLink variant="secondary" href={labs.cta.href}>
             {labs.cta.label}
           </CtaLink>

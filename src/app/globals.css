@@ -39,12 +39,12 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
-/* v1 / v2 palette: light sage with a deep teal accent. v3 and v4 override
+/* v1 palette: light sage with a deep teal accent. Later versions override
    these tokens through their own theme wrappers. */
 :root {
   /* Accent used by buttons, eyebrows, the impact panel and shared chrome. */
   --brand: #0e6e62;
-  /* Secondary accent; only the v4 theme sets its own. */
+  /* Secondary accent; only the v3 theme sets its own. */
   --highlight: #f2c14e;
   --background: #eef3f0;
   --foreground: #10201c;
@@ -121,7 +121,7 @@
   }
 }
 
-/* v3 "paper" theme: warm editorial light palette with a vermilion accent.
+/* v2 "paper" theme: warm editorial light palette with a vermilion accent.
    Scoped to a wrapper so the other routes keep the dark theme. */
 .theme-paper {
   --brand: #c2361f;
@@ -154,7 +154,7 @@ body:has(.theme-paper) {
   background-color: #f3eee6;
 }
 
-/* v4 "clear" theme: bright, high-contrast and easy to scan. Cobalt for actions,
+/* v3 "clear" theme: bright, high-contrast and easy to scan. Cobalt for actions,
    sunny yellow for highlights. Scoped like .theme-paper. */
 .theme-clear {
   --brand: #2340c9;
@@ -199,4 +199,125 @@ body:has(.theme-clear) {
   [data-intro] {
     visibility: hidden;
   }
+}
+
+/* ---------------------------------------------------------------------------
+   v4 to v6: each route loads its own display face into --font-display and
+   wraps the page in one of the themes below.
+   ------------------------------------------------------------------------ */
+
+@utility font-display {
+  font-family: var(--font-display), var(--font-archivo), sans-serif;
+}
+
+@theme {
+  --animate-marquee: marquee 36s linear infinite;
+  --animate-spin-slow: spin 20s linear infinite;
+  --animate-float: float 7s ease-in-out infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes float {
+    50% {
+      transform: translateY(-12px);
+    }
+  }
+}
+
+/* v4 "night": a dark screening room. Acid lime for actions, hot pink for flags. */
+.theme-night {
+  --brand: #c8f542;
+  --highlight: #ff4d8d;
+  --background: #0a0a0f;
+  --foreground: #f3f1ea;
+  --card: #14141c;
+  --card-foreground: #f3f1ea;
+  --popover: #14141c;
+  --popover-foreground: #f3f1ea;
+  --primary: var(--brand);
+  --primary-foreground: #0a0a0f;
+  --secondary: #1e1e29;
+  --secondary-foreground: #f3f1ea;
+  --muted: #1e1e29;
+  --muted-foreground: #a3a2b3;
+  --accent: #1e1e29;
+  --accent-foreground: #f3f1ea;
+  --border: rgb(243 241 234 / 0.14);
+  --input: rgb(243 241 234 / 0.32);
+  --ring: var(--brand);
+  --radius: 0.25rem;
+  color-scheme: dark;
+}
+:root:has(.theme-night) {
+  color-scheme: dark;
+}
+body:has(.theme-night) {
+  background-color: #0a0a0f;
+}
+
+/* v5 "pop": cream paper, ink outlines, sticker colors. */
+.theme-pop {
+  --brand: #e11d6a;
+  --highlight: #ffd43b;
+  --pop-mint: #3ddbb4;
+  --pop-sky: #7db4ff;
+  --background: #fff6e6;
+  --foreground: #1a1433;
+  --card: #ffffff;
+  --card-foreground: #1a1433;
+  --popover: #ffffff;
+  --popover-foreground: #1a1433;
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: #ffe8c2;
+  --secondary-foreground: #1a1433;
+  --muted: #ffe8c2;
+  --muted-foreground: #58516f;
+  --accent: #ffe8c2;
+  --accent-foreground: #1a1433;
+  --border: rgb(26 20 51 / 0.16);
+  --input: rgb(26 20 51 / 0.4);
+  --ring: var(--brand);
+  --radius: 1rem;
+  color-scheme: light;
+}
+:root:has(.theme-pop) {
+  color-scheme: light;
+}
+body:has(.theme-pop) {
+  background-color: #fff6e6;
+}
+
+/* v6 "dusk": plum evening sky with an apricot-to-rose glow. */
+.theme-dusk {
+  --brand: #ffb057;
+  --highlight: #ff6f91;
+  --background: #170d22;
+  --foreground: #f8eee4;
+  --card: #23142f;
+  --card-foreground: #f8eee4;
+  --popover: #23142f;
+  --popover-foreground: #f8eee4;
+  --primary: var(--brand);
+  --primary-foreground: #1f1020;
+  --secondary: #2e1c3d;
+  --secondary-foreground: #f8eee4;
+  --muted: #2e1c3d;
+  --muted-foreground: #bdadc8;
+  --accent: #2e1c3d;
+  --accent-foreground: #f8eee4;
+  --border: rgb(248 238 228 / 0.15);
+  --input: rgb(248 238 228 / 0.32);
+  --ring: var(--brand);
+  --radius: 1.25rem;
+  color-scheme: dark;
+}
+:root:has(.theme-dusk) {
+  color-scheme: dark;
+}
+body:has(.theme-dusk) {
+  background-color: #170d22;
 }

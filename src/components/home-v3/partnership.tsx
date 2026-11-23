@@ -1,21 +1,21 @@
 import { Check } from "lucide-react";
-import { partnership } from "@/content/home-v4";
+import { partnership } from "@/content/home-v3";
 import { cn } from "@/lib/utils";
 import { CtaLink } from "./cta-link";
 import { RevealSection } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
 /**
- * v4 partnership tiers. On the live site these sit at the bottom of the
+ * v3 partnership tiers. On the live site these sit at the bottom of the
  * programs page; schools and sponsors are the main buyers, so here they get
  * a clear, comparable set of cards with the price up front.
  */
-export function PartnershipV4() {
+export function PartnershipV3() {
   return (
-    <RevealSection id="partner" aria-labelledby="partner-heading-v4" className="scroll-mt-20 py-20 md:py-28">
+    <RevealSection id="partner" aria-labelledby="partner-heading-v3" className="scroll-mt-20 py-20 md:py-28">
       <div className="container-site">
         <SectionHeading
-          id="partner-heading-v4"
+          id="partner-heading-v3"
           eyebrow={partnership.eyebrow}
           heading={partnership.heading}
           body={partnership.body}

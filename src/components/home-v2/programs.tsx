@@ -5,14 +5,14 @@ import { Media, type MediaTone } from "@/components/site/media";
 import { programs } from "@/content/home";
 import { fadeUp, gsap, revealLines, useSectionMotion } from "@/lib/motion";
 
-const TONES: MediaTone[] = ["dusk", "clay", "sage", "ember"];
+const TONES: MediaTone[] = ["sand", "clay", "sage", "stage"];
 
 /**
- * v3 programs — "stacked deck".
+ * v2 programs — "stacked deck".
  * Each program is a sticky card; the next one slides up over it while the one
  * underneath sinks back and dims, so the four build into a stack.
  */
-export function ProgramsV3() {
+export function ProgramsV2() {
   const root = useRef<HTMLElement>(null);
 
   useSectionMotion(root, (el) => {

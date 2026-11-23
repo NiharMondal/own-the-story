@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Archivo, Geist_Mono, Inter } from "next/font/google";
+import { VersionSwitcher } from "@/components/site/version-switcher";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import "./globals.css";
 
@@ -34,6 +35,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className="flex min-h-full flex-col">
         <SmoothScroll />
         {children}
+        <VersionSwitcher />
       </body>
     </html>
   );

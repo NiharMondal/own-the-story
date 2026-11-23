@@ -4,12 +4,12 @@ import { CtaLink } from "./cta-link";
 import { RevealSection } from "./reveal";
 import { SectionHeading } from "./section-heading";
 
-/** v4 blog/series: plain article cards with date and read time up front. */
-export function StoriesV4() {
+/** v3 blog/series: plain article cards with date and read time up front. */
+export function StoriesV3() {
   return (
-    <RevealSection id="series" aria-labelledby="series-heading-v4" className="scroll-mt-20 bg-card py-20 md:py-28">
+    <RevealSection id="series" aria-labelledby="series-heading-v3" className="scroll-mt-20 bg-card py-20 md:py-28">
       <div className="container-site">
-        <SectionHeading id="series-heading-v4" eyebrow={series.eyebrow} heading={series.heading}>
+        <SectionHeading id="series-heading-v3" eyebrow={series.eyebrow} heading={series.heading}>
           <CtaLink variant="text" href={series.viewAll.href}>
             {series.viewAll.label}
           </CtaLink>

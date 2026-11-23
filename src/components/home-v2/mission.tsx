@@ -8,12 +8,12 @@ import { PillLink } from "./pill-link";
 const MARKER = "color-mix(in oklab, var(--brand) 28%, transparent)";
 
 /**
- * v3 mission — "highlighter".
+ * v2 mission — "highlighter".
  * A brand-tinted marker sweeps under the statement as you scroll. The span
  * stays one inline box (box-decoration-break: slice), so the sweep runs line
  * by line, the way a pen would.
  */
-export function MissionV3() {
+export function MissionV2() {
   const root = useRef<HTMLElement>(null);
 
   useSectionMotion(root, (el) => {

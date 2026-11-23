@@ -7,11 +7,11 @@ import { film } from "@/content/home";
 import { fadeUp, gsap, revealLines, useSectionMotion } from "@/lib/motion";
 
 /**
- * v3 featured film — "screening room".
+ * v2 featured film — "screening room".
  * The player sits in an ink frame that rises into place as you scroll. On
  * desktop the round play button follows the cursor around the picture.
  */
-export function FeaturedFilmV3() {
+export function FeaturedFilmV2() {
   const root = useRef<HTMLElement>(null);
 
   useSectionMotion(root, (el) => {

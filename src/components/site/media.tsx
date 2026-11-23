@@ -1,10 +1,11 @@
 import Image from "next/image";
+import { tonePhotos } from "@/content/photos";
 import { cn } from "@/lib/utils";
 
 /*
- * Image frame used across the page. Until real photography is supplied it
- * paints a lit, film-grain gradient in the mood of each shot; pass `src`
- * (e.g. "/images/hero.jpg" from /public) to swap in the real picture.
+ * Image frame used across the page. Each `tone` maps to a stock photo in
+ * content/photos.ts; pass `src` to show a specific picture instead. The tone's
+ * gradient stays underneath as the backdrop while the photo loads.
  *
  * Structure matters for animation:
  *   [data-media]        frame — clip-path reveals
@@ -31,15 +32,17 @@ const TONES = {
     "radial-gradient(18% 22% at 60% 22%, rgb(255 236 190 / 0.7), transparent 70%), linear-gradient(170deg, #4a3c2c, #1b1510)",
   daylight:
     "radial-gradient(60% 60% at 70% 30%, rgb(220 230 240 / 0.6), transparent 70%), linear-gradient(135deg, #6c7a86, #23282e)",
-  // Warm duotones for the light "paper" theme (v3).
+  // Warm duotones for the light "paper" theme (v2).
   ember:
     "radial-gradient(42% 60% at 64% 42%, rgb(255 168 112 / 0.75), transparent 70%), radial-gradient(70% 80% at 20% 90%, rgb(194 54 31 / 0.55), transparent 70%), linear-gradient(160deg, #3a1a12, #140c09)",
   clay: "radial-gradient(55% 55% at 35% 30%, rgb(255 222 196 / 0.7), transparent 70%), linear-gradient(150deg, #b8653f, #5b2a1a)",
   dusk: "radial-gradient(45% 55% at 70% 35%, rgb(255 190 150 / 0.55), transparent 70%), linear-gradient(170deg, #4b3a5a, #1d1622)",
   sage: "radial-gradient(55% 55% at 40% 30%, rgb(236 240 220 / 0.7), transparent 70%), linear-gradient(160deg, #7d8a6c, #2f3529)",
   sand: "radial-gradient(50% 55% at 60% 35%, rgb(255 246 230 / 0.85), transparent 72%), linear-gradient(160deg, #c9b08c, #6e5a40)",
-  // Light backdrops for the light v1 / v2 palette, where text sits on the picture.
+  // Light backdrops for the light v1 palette, where text sits on the picture.
   mist: "radial-gradient(40% 55% at 68% 38%, rgb(255 255 255 / 0.75), transparent 70%), radial-gradient(60% 70% at 85% 90%, rgb(14 110 98 / 0.35), transparent 70%), linear-gradient(160deg, #cfe0d8, #8fb3a6)",
+  // Cool backlit set, used where a face would wrongly suggest a named person.
+  silhouette: "radial-gradient(40% 55% at 60% 40%, rgb(96 150 255 / 0.6), transparent 70%), linear-gradient(170deg, #16233f, #070a12)",
   dawn: "radial-gradient(30% 40% at 64% 48%, rgb(255 250 240 / 0.85), transparent 70%), radial-gradient(70% 60% at 90% 100%, rgb(232 160 120 / 0.45), transparent 70%), linear-gradient(160deg, #e6ddd0, #b7a58f)",
 } as const;
 
@@ -52,7 +55,7 @@ type MediaProps = {
   tone?: MediaTone;
   src?: string;
   alt?: string;
-  /** Corner chip. Defaults to "Placeholder image" while no `src` is set. */
+  /** Optional corner chip, e.g. a note that the video player is not wired in yet. */
   label?: string | false;
   priority?: boolean;
   sizes?: string;
@@ -66,7 +69,7 @@ export function Media({
   tone = "slate",
   src,
   alt = "",
-  label = src ? false : "Placeholder image",
+  label,
   priority,
   sizes = "100vw",
   hoverZoom,
@@ -83,19 +86,18 @@ export function Media({
               "transition-transform duration-[1400ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.06]",
           )}
         >
-          {src ? (
-            <Image src={src} alt={alt} fill priority={priority} sizes={sizes} className="object-cover" />
-          ) : (
-            <div
-              role={alt ? "img" : undefined}
-              aria-label={alt || undefined}
-              className="absolute inset-0"
-              style={{ backgroundImage: TONES[tone] }}
-            />
-          )}
+          <div aria-hidden className="absolute inset-0" style={{ backgroundImage: TONES[tone] }} />
+          <Image
+            src={src ?? tonePhotos[tone]}
+            alt={alt}
+            fill
+            preload={priority}
+            sizes={sizes}
+            className="object-cover"
+          />
           <div
             aria-hidden
-            className="absolute inset-0 opacity-20 mix-blend-overlay"
+            className="absolute inset-0 opacity-15 mix-blend-overlay"
             style={{ backgroundImage: GRAIN }}
           />
         </div>

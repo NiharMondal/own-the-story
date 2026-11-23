@@ -117,21 +117,6 @@ export function revealMedia(frames: Element[], opts: RevealOptions & { stagger?:
   });
 }
 
-/** Letters surface in random order — a quieter, typographic reveal. */
-export function scatterChars(target: Element | null, opts: RevealOptions = {}) {
-  if (!target) return;
-  const split = SplitText.create(target, { type: "words,chars" });
-  return gsap.from(split.chars, {
-    autoAlpha: 0,
-    yPercent: 40,
-    duration: 0.9,
-    ease: "power3.out",
-    stagger: { each: 0.02, from: "random" },
-    delay: opts.delay,
-    scrollTrigger: opts.immediate ? undefined : { trigger: opts.trigger ?? target, start: "top 85%", toggleActions: "play none none none" },
-  });
-}
-
 /** Elements come into focus: blur clears while they drift into place. */
 export function blurIn(
   targets: gsap.TweenTarget,

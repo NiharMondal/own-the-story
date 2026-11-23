@@ -1,8 +1,8 @@
 import type { MediaTone } from "@/components/site/media";
 
 /*
- * All homepage copy in one place. Both homepage versions ("/" and "/v2")
- * render from this, so edit text here rather than in the components.
+ * All homepage copy in one place. Every homepage version
+ * renders from this, so edit text here rather than in the components.
  */
 
 export const nav = {
@@ -112,7 +112,7 @@ export const series: {
       title: "From phone to festival",
       body: "How a student film travels from a first draft on a phone to a screening with a real audience.",
       meta: "Coming Nov 2026",
-      tone: "slate",
+      tone: "spotlight",
       comingSoon: true,
     },
   ],
@@ -124,7 +124,7 @@ export const support = {
   cta: { label: "Donate", href: "#donate" },
   note: "Your gift goes to a 501(c)(3) nonprofit and is tax-deductible to the extent allowed by law.",
   tone: "crimson" as MediaTone,
-  /** Full-bleed backdrop behind the text in "/" and "/v2" (v3 uses `tone` for its card). */
+  /** Full-bleed backdrop behind the text in "/" (v2 uses `tone` for its card). */
   backdropTone: "dawn" as MediaTone,
 };
 

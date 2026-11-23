@@ -7,7 +7,7 @@ import { EASE, fadeUp, gsap, revealLines, useSectionMotion } from "@/lib/motion"
 import { cn } from "@/lib/utils";
 import { PillLink } from "./pill-link";
 
-const TONES: MediaTone[] = ["clay", "sand", "dusk"];
+const TONES: MediaTone[] = ["studio", "daylight", "spotlight"];
 
 function ComingSoon() {
   return (
@@ -18,12 +18,12 @@ function ComingSoon() {
 }
 
 /**
- * v3 series — "contents page".
+ * v2 series — "contents page".
  * The parts read like a table of contents: rules draw in row by row. On
  * desktop a preview of each part floats beside the cursor while you hover,
  * leaning into the direction of travel.
  */
-export function SeriesV3() {
+export function SeriesV2() {
   const root = useRef<HTMLElement>(null);
 
   useSectionMotion(root, (el) => {

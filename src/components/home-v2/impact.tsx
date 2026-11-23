@@ -6,11 +6,11 @@ import { fadeUp, gsap, useSectionMotion } from "@/lib/motion";
 import { cn } from "@/lib/utils";
 
 /**
- * v3 impact — "ledger".
+ * v2 impact — "ledger".
  * A rule draws across the page, then large serif figures count up between
  * hairline column dividers.
  */
-export function ImpactV3() {
+export function ImpactV2() {
   const root = useRef<HTMLElement>(null);
 
   useSectionMotion(root, (el) => {
@@ -42,11 +42,11 @@ export function ImpactV3() {
   });
 
   return (
-    <section ref={root} aria-labelledby="impact-heading-v3" className="py-24 md:py-36">
+    <section ref={root} aria-labelledby="impact-heading-v2" className="py-24 md:py-36">
       <div className="container-site">
         <div data-rule className="h-px origin-left bg-foreground" />
         <div className="mt-6 flex flex-col justify-between gap-4 md:flex-row md:items-start">
-          <h2 data-head id="impact-heading-v3" className="eyebrow">
+          <h2 data-head id="impact-heading-v2" className="eyebrow">
             {impact.heading}
           </h2>
           <p data-head className="max-w-xs text-sm text-muted-foreground md:text-right">

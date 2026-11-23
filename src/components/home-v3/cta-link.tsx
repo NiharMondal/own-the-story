@@ -6,7 +6,7 @@ type CtaLinkProps = React.ComponentProps<"a"> & {
   variant?: "primary" | "secondary" | "text";
 };
 
-/** v4 call to action. External links get an outward arrow and open in a new tab. */
+/** v3 call to action. External links get an outward arrow and open in a new tab. */
 export function CtaLink({ variant = "primary", className, children, href = "#", ...props }: CtaLinkProps) {
   const external = href.startsWith("http");
   const Arrow = external ? ArrowUpRight : ArrowRight;

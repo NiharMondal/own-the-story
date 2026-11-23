@@ -8,12 +8,12 @@ import { EASE, fadeUp, gsap, prefersReducedMotion, useGSAP } from "@/lib/motion"
 import { PillLink } from "./pill-link";
 
 /**
- * v3 hero — "front page".
+ * v2 hero — "front page".
  * A giant serif masthead tilts up into place line by line; the film still
  * unrolls from the bottom. On scroll the two title lines slide apart in
  * opposite directions while the still rises faster than the page.
  */
-export function HeroV3() {
+export function HeroV2() {
   const root = useRef<HTMLElement>(null);
   const drift = useRef<gsap.core.Tween | null>(null);
   const [paused, setPaused] = useState(false);
@@ -101,9 +101,6 @@ export function HeroV3() {
               <div data-hero-drift className="absolute inset-0">
                 <Media tone="ember" label={false} priority className="absolute inset-0" />
               </div>
-              <span className="absolute top-4 left-4 rounded-full bg-background/85 px-3 py-1 text-xs text-foreground/80 backdrop-blur-sm">
-                Placeholder image
-              </span>
               <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3 md:inset-x-6 md:bottom-6">
                 <a
                   href={hero.watch.href}

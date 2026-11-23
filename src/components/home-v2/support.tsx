@@ -7,11 +7,11 @@ import { support } from "@/content/home";
 import { fadeUp, gsap, revealLines, useSectionMotion } from "@/lib/motion";
 
 /**
- * v3 support — "poster".
+ * v2 support — "poster".
  * A vermilion block settles into place as it scrolls in, a tilted still swings
  * through it, and the round Donate button is magnetic: it leans toward the cursor.
  */
-export function SupportV3() {
+export function SupportV2() {
   const root = useRef<HTMLElement>(null);
 
   useSectionMotion(root, (el) => {

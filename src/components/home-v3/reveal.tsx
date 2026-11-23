@@ -9,7 +9,7 @@ type RevealSectionProps = React.ComponentProps<"section"> & {
 };
 
 /**
- * v4 keeps motion quiet: every `[data-reveal]` child simply drifts up and
+ * v3 keeps motion quiet: every `[data-reveal]` child simply drifts up and
  * fades in once, in reading order. Reduced-motion users see it all at once.
  * Being a client wrapper lets the sections themselves stay server components.
  */

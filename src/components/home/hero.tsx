@@ -64,7 +64,7 @@ export function Hero() {
       </div>
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--background)_85%,transparent),color-mix(in_srgb,var(--background)_35%,transparent)_55%,transparent),linear-gradient(0deg,var(--background),transparent_40%)]"
+        className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,color-mix(in_srgb,var(--background)_94%,transparent),color-mix(in_srgb,var(--background)_78%,transparent)_45%,transparent_82%),linear-gradient(0deg,var(--background),transparent_40%)]"
       />
       <div data-hero-shade aria-hidden className="absolute inset-0 -z-10 bg-background opacity-0" />
 
@@ -98,9 +98,6 @@ export function Hero() {
         </div>
 
         <div data-intro data-hero-fade className="flex flex-col items-start gap-4 lg:items-end">
-          <span className="rounded-sm bg-black/50 px-2 py-1 text-xs text-white/70 backdrop-blur-sm">
-            Placeholder image
-          </span>
           <a href={hero.watch.href} className="group flex items-center gap-3 font-semibold">
             <span className="grid size-11 place-items-center rounded-sm bg-brand text-primary-foreground transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
               <Play className="size-5" />

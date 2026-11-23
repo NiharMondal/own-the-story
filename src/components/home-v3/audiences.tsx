@@ -1,18 +1,18 @@
 import { Building2, Clapperboard, Handshake, School } from "lucide-react";
-import { audiences } from "@/content/home-v4";
+import { audiences } from "@/content/home-v3";
 import { RevealSection } from "./reveal";
 
 const ICONS = { school: School, district: Building2, sponsor: Handshake, youth: Clapperboard };
 
 /**
- * v4 audience paths. The live site makes every visitor read the whole page to
+ * v3 audience paths. The live site makes every visitor read the whole page to
  * find their part; here each audience gets one card and one next step.
  */
-export function AudiencesV4() {
+export function AudiencesV3() {
   return (
-    <RevealSection aria-labelledby="audiences-heading-v4" className="pb-20 md:pb-28">
+    <RevealSection aria-labelledby="audiences-heading-v3" className="pb-20 md:pb-28">
       <div className="container-site">
-        <h2 data-reveal id="audiences-heading-v4" className="text-xl font-bold tracking-[-0.01em]">
+        <h2 data-reveal id="audiences-heading-v3" className="text-xl font-bold tracking-[-0.01em]">
           {audiences.heading}
         </h2>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">

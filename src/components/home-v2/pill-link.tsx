@@ -7,7 +7,7 @@ type PillLinkProps = React.ComponentProps<"a"> & {
 };
 
 /**
- * v3 call to action. Only colors transition in CSS, never transforms, so GSAP
+ * v2 call to action. Only colors transition in CSS, never transforms, so GSAP
  * can animate these links without the two fighting.
  */
 export function PillLink({ variant = "solid", className, children, ...props }: PillLinkProps) {

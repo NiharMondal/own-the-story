@@ -9,7 +9,7 @@ type SectionHeadingProps = {
   children?: React.ReactNode;
 };
 
-/** One heading pattern for every v4 section, so the page reads consistently. */
+/** One heading pattern for every v3 section, so the page reads consistently. */
 export function SectionHeading({ id, eyebrow, heading, body, className, children }: SectionHeadingProps) {
   return (
     <div className={cn("flex flex-col gap-6 md:flex-row md:items-end md:justify-between", className)}>

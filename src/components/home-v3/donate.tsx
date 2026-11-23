@@ -1,13 +1,13 @@
 import { Heart } from "lucide-react";
 import { support } from "@/content/home";
-import { closing, links, partnership } from "@/content/home-v4";
+import { closing, links, partnership } from "@/content/home-v3";
 import { CtaLink } from "./cta-link";
 import { RevealSection } from "./reveal";
 
-/** v4 closing call to action: one place to give or partner. */
-export function DonateV4() {
+/** v3 closing call to action: one place to give or partner. */
+export function DonateV3() {
   return (
-    <RevealSection id="donate" aria-labelledby="donate-heading-v4" className="scroll-mt-20 py-20 md:py-28">
+    <RevealSection id="donate" aria-labelledby="donate-heading-v3" className="scroll-mt-20 py-20 md:py-28">
       <div className="container-site">
         <div className="relative overflow-hidden rounded-3xl bg-brand px-6 py-14 text-center text-primary-foreground md:px-16 md:py-20">
           <div
@@ -19,7 +19,7 @@ export function DonateV4() {
           </span>
           <h2
             data-reveal
-            id="donate-heading-v4"
+            id="donate-heading-v3"
             className="mx-auto mt-6 max-w-3xl text-[clamp(2.25rem,5vw,4rem)] leading-[1.02] font-extrabold tracking-[-0.03em]"
           >
             {closing.heading}
