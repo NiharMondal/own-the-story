@@ -147,4 +147,54 @@ export const footer = {
   copyright: "© 2026 Own the Story Media Holdings LLC. All rights reserved.",
 };
 
+/*
+ * Sections below are shared by every version (components/sections). The film
+ * titles, directors and schools are placeholders until real ones are supplied.
+ */
+
+export const whyItMatters = {
+  eyebrow: "Why it matters",
+  heading: ["Images are", "not neutral."],
+  // `mark` is the phrase picked out in the brand color.
+  points: [
+    { text: "Every frame is a choice.", mark: "Someone decided what you see and what you don't." },
+    { text: "Young people are surrounded by moving images,", mark: "and rarely taught to read them." },
+    { text: "Whoever holds the camera", mark: "shapes whose story gets told." },
+    { text: "Learning to make an image is", mark: "the surest way to learn to question one." },
+  ],
+};
+
+export const studentFilms = {
+  eyebrow: "Student films",
+  heading: ["Four films.", "Four directors."],
+  link: { label: "See all films", href: "#film" },
+  note: "Titles and credits are placeholders until the first films are confirmed.",
+  items: [
+    { title: "Film title 01", credit: "Directed by [student], [school]", length: "08 min" },
+    { title: "Film title 02", credit: "Directed by [student], [school]", length: "11 min" },
+    { title: "Film title 03", credit: "Directed by [student], [school]", length: "06 min" },
+    { title: "Film title 04", credit: "Directed by [student], [school]", length: "09 min" },
+  ],
+};
+
+export const city = {
+  eyebrow: "On location",
+  heading: ["The city is", "our classroom."],
+  body: "Students plan, shoot and screen their films out in the neighborhoods they know best.",
+  captions: ["On the block", "Finding the frame", "With the crew", "Calling action", "On set", "In the edit", "Opening night"],
+};
+
+export const startHere = {
+  heading: "Young filmmakers start here.",
+  body: "No experience and no equipment needed. Bring a phone and a point of view.",
+  cta: { label: "Explore the programs", href: "#programs" },
+};
+
+export const closingStatement = {
+  // The middle part is picked out in the brand color.
+  text: ["Every movement begins with young people who believe in", "a better future."],
+  primaryCta: { label: "Partner with us", href: "#contact" },
+  secondaryCta: { label: "Support the movement", href: "#donate" },
+};
+
 export const formatNumber = (n: number) => Math.round(n).toLocaleString("en-US");

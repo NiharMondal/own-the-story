@@ -50,15 +50,15 @@ export function FilmV4() {
           <button
             type="button"
             aria-label="Play film (player not connected yet)"
-            className="absolute top-1/2 left-1/2 grid size-32 -translate-1/2 place-items-center rounded-full text-foreground md:size-44"
+            className="absolute top-1/2 left-1/2 grid size-32 -translate-1/2 place-items-center rounded-full text-white md:size-44"
           >
-            <SpinBadge text="Play the film" className="absolute inset-0 bg-background/40 backdrop-blur-sm" />
-            <span className="relative grid size-16 place-items-center rounded-full bg-brand text-primary-foreground transition-transform duration-500 group-hover:scale-110 md:size-20">
+            <SpinBadge text="Play the film" className="absolute inset-0 bg-black/40 backdrop-blur-sm" />
+            <span className="relative grid size-16 place-items-center rounded-full bg-highlight text-foreground transition-transform duration-500 group-hover:scale-110 md:size-20">
               <Play className="size-6 fill-current" />
             </span>
           </button>
-          <p className="absolute bottom-4 left-6 text-sm font-semibold md:bottom-6 md:left-10 md:text-base">{film.title}</p>
-          <span className="absolute right-6 bottom-4 text-sm tabular-nums md:right-10 md:bottom-6">{film.duration}</span>
+          <p className="absolute bottom-4 left-6 text-sm font-semibold text-white md:bottom-6 md:left-10 md:text-base">{film.title}</p>
+          <span className="absolute right-6 bottom-4 text-sm text-white tabular-nums md:right-10 md:bottom-6">{film.duration}</span>
         </div>
         <Sprockets />
       </div>

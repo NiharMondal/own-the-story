@@ -2,7 +2,7 @@ import { RevealSection } from "@/components/home-v3/reveal";
 import { Media } from "@/components/site/media";
 import { series } from "@/content/home";
 import { photos } from "@/content/photos";
-import { DuskLink } from "./dusk-link";
+import { GlowLink } from "./glow-link";
 
 const PHOTOS = [photos.kidWithCamera, photos.crewTeal, photos.phoneRecording];
 
@@ -26,9 +26,9 @@ export function SeriesV6() {
             {series.heading}
           </h2>
           <div data-reveal className="mt-9">
-            <DuskLink variant="ghost" href={series.viewAll.href}>
+            <GlowLink variant="ghost" href={series.viewAll.href}>
               {series.viewAll.label}
-            </DuskLink>
+            </GlowLink>
           </div>
         </div>
 

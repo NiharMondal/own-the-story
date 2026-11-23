@@ -2,7 +2,7 @@ import { RevealSection } from "@/components/home-v3/reveal";
 import { Media } from "@/components/site/media";
 import { series } from "@/content/home";
 import { photos } from "@/content/photos";
-import { NightLink } from "./night-link";
+import { SlabLink } from "./slab-link";
 
 const PHOTOS = [photos.silhouetteCamera, photos.clapperOnSet, photos.phoneRecording];
 
@@ -25,9 +25,9 @@ export function SeriesV4() {
             </h2>
           </div>
           <div data-reveal>
-            <NightLink variant="line" href={series.viewAll.href}>
+            <SlabLink variant="line" href={series.viewAll.href}>
               {series.viewAll.label}
-            </NightLink>
+            </SlabLink>
           </div>
         </div>
 
@@ -42,7 +42,7 @@ export function SeriesV4() {
                   <p className="flex flex-wrap items-center gap-3 text-xs font-semibold tracking-[0.16em] text-muted-foreground uppercase">
                     {part.meta}
                     {part.comingSoon && (
-                      <span className="bg-highlight px-2 py-0.5 text-primary-foreground">Coming soon</span>
+                      <span className="bg-highlight px-2 py-0.5 text-foreground">Coming soon</span>
                     )}
                   </p>
                   <h3 className="font-display mt-2 text-3xl leading-none font-normal uppercase transition-colors duration-300 group-hover:text-brand md:text-5xl">

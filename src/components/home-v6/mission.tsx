@@ -2,7 +2,7 @@ import Image from "next/image";
 import { RevealSection } from "@/components/home-v3/reveal";
 import { mission } from "@/content/home";
 import { photos } from "@/content/photos";
-import { DuskLink } from "./dusk-link";
+import { GlowLink } from "./glow-link";
 
 /** A small oval photo that sits in the line of type like a word. */
 function InlinePhoto({ src }: { src: string }) {
@@ -38,9 +38,9 @@ export function MissionV6() {
           {mission.body}
         </p>
         <div data-reveal className="mt-9 flex justify-center">
-          <DuskLink variant="ghost" href="#programs">
+          <GlowLink variant="ghost" href="#programs">
             See the programs
-          </DuskLink>
+          </GlowLink>
         </div>
       </div>
     </RevealSection>

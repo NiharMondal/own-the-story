@@ -227,35 +227,36 @@ body:has(.theme-clear) {
   }
 }
 
-/* v4 "night": a dark screening room. Acid lime for actions, hot pink for flags. */
-.theme-night {
-  --brand: #c8f542;
-  --highlight: #ff4d8d;
-  --background: #0a0a0f;
-  --foreground: #f3f1ea;
-  --card: #14141c;
-  --card-foreground: #f3f1ea;
-  --popover: #14141c;
-  --popover-foreground: #f3f1ea;
+/* v4 "matinee": a daylight screening. Newsprint white, ink black, violet for
+   actions and acid lime as the highlighter. */
+.theme-matinee {
+  --brand: #5a31f4;
+  --highlight: #c8f542;
+  --background: #f6f5f0;
+  --foreground: #101014;
+  --card: #ffffff;
+  --card-foreground: #101014;
+  --popover: #ffffff;
+  --popover-foreground: #101014;
   --primary: var(--brand);
-  --primary-foreground: #0a0a0f;
-  --secondary: #1e1e29;
-  --secondary-foreground: #f3f1ea;
-  --muted: #1e1e29;
-  --muted-foreground: #a3a2b3;
-  --accent: #1e1e29;
-  --accent-foreground: #f3f1ea;
-  --border: rgb(243 241 234 / 0.14);
-  --input: rgb(243 241 234 / 0.32);
+  --primary-foreground: #ffffff;
+  --secondary: #e9e7df;
+  --secondary-foreground: #101014;
+  --muted: #e9e7df;
+  --muted-foreground: #5b5a66;
+  --accent: #e9e7df;
+  --accent-foreground: #101014;
+  --border: rgb(16 16 20 / 0.14);
+  --input: rgb(16 16 20 / 0.32);
   --ring: var(--brand);
   --radius: 0.25rem;
-  color-scheme: dark;
+  color-scheme: light;
 }
-:root:has(.theme-night) {
-  color-scheme: dark;
+:root:has(.theme-matinee) {
+  color-scheme: light;
 }
-body:has(.theme-night) {
-  background-color: #0a0a0f;
+body:has(.theme-matinee) {
+  background-color: #f6f5f0;
 }
 
 /* v5 "pop": cream paper, ink outlines, sticker colors. */
@@ -291,33 +292,33 @@ body:has(.theme-pop) {
   background-color: #fff6e6;
 }
 
-/* v6 "dusk": plum evening sky with an apricot-to-rose glow. */
-.theme-dusk {
-  --brand: #ffb057;
-  --highlight: #ff6f91;
-  --background: #170d22;
-  --foreground: #f8eee4;
-  --card: #23142f;
-  --card-foreground: #f8eee4;
-  --popover: #23142f;
-  --popover-foreground: #f8eee4;
+/* v6 "sunrise": blush morning sky, plum ink, an orange-to-rose glow. */
+.theme-sunrise {
+  --brand: #e2570d;
+  --highlight: #e63378;
+  --background: #fff5ef;
+  --foreground: #2a1436;
+  --card: #ffffff;
+  --card-foreground: #2a1436;
+  --popover: #ffffff;
+  --popover-foreground: #2a1436;
   --primary: var(--brand);
-  --primary-foreground: #1f1020;
-  --secondary: #2e1c3d;
-  --secondary-foreground: #f8eee4;
-  --muted: #2e1c3d;
-  --muted-foreground: #bdadc8;
-  --accent: #2e1c3d;
-  --accent-foreground: #f8eee4;
-  --border: rgb(248 238 228 / 0.15);
-  --input: rgb(248 238 228 / 0.32);
+  --primary-foreground: #ffffff;
+  --secondary: #fde6da;
+  --secondary-foreground: #2a1436;
+  --muted: #fde6da;
+  --muted-foreground: #6d5a78;
+  --accent: #fde6da;
+  --accent-foreground: #2a1436;
+  --border: rgb(42 20 54 / 0.14);
+  --input: rgb(42 20 54 / 0.32);
   --ring: var(--brand);
   --radius: 1.25rem;
-  color-scheme: dark;
+  color-scheme: light;
 }
-:root:has(.theme-dusk) {
-  color-scheme: dark;
+:root:has(.theme-sunrise) {
+  color-scheme: light;
 }
-body:has(.theme-dusk) {
-  background-color: #170d22;
+body:has(.theme-sunrise) {
+  background-color: #fff5ef;
 }

@@ -1,13 +1,13 @@
 import { ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type NightLinkProps = React.ComponentProps<"a"> & {
-  /** "solid": lime slab. "line": outlined slab. */
+type SlabLinkProps = React.ComponentProps<"a"> & {
+  /** "solid": brand slab. "line": outlined slab. */
   variant?: "solid" | "line";
 };
 
 /** v4 call to action: a hard-edged slab, like a cinema ticket stub. */
-export function NightLink({ variant = "solid", className, children, ...props }: NightLinkProps) {
+export function SlabLink({ variant = "solid", className, children, ...props }: SlabLinkProps) {
   return (
     <a
       className={cn(

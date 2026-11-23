@@ -7,7 +7,7 @@ import { heroV3 } from "@/content/home-v3";
 import { photos } from "@/content/photos";
 import { EASE, fadeUp, gsap, useSectionMotion } from "@/lib/motion";
 import { cn } from "@/lib/utils";
-import { DuskLink } from "./dusk-link";
+import { GlowLink } from "./glow-link";
 
 const ARCHES = [
   { src: photos.teensGroup, alt: "A group of teenagers together outdoors", height: "h-[52%]", hide: true },
@@ -47,13 +47,13 @@ export function HeroV6() {
     <section ref={root} aria-labelledby="hero-heading-v6" className="relative isolate overflow-hidden pt-36 md:pt-44">
       <div
         aria-hidden
-        className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgb(255_111_145/0.28),transparent_70%),radial-gradient(40%_40%_at_85%_30%,rgb(255_176_87/0.16),transparent_70%),radial-gradient(40%_40%_at_10%_40%,rgb(140_90_255/0.2),transparent_70%)]"
+        className="absolute inset-0 -z-10 bg-[radial-gradient(60%_50%_at_50%_0%,rgb(255_111_145/0.35),transparent_70%),radial-gradient(40%_40%_at_85%_30%,rgb(255_176_87/0.4),transparent_70%),radial-gradient(40%_40%_at_10%_40%,rgb(160_120_255/0.22),transparent_70%)]"
       />
 
       <div className="container-site text-center">
         <p
           data-fade
-          className="inline-flex items-center gap-2 rounded-full border border-foreground/20 bg-foreground/5 px-4 py-1.5 text-sm backdrop-blur-sm"
+          className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-card/70 px-4 py-1.5 text-sm backdrop-blur-sm"
         >
           <span className="size-1.5 rounded-full bg-brand" />
           {heroV3.eyebrow}
@@ -72,10 +72,10 @@ export function HeroV6() {
           {hero.intro}
         </p>
         <div data-fade className="mt-9 flex flex-wrap justify-center gap-4">
-          <DuskLink href={hero.primaryCta.href}>{hero.primaryCta.label}</DuskLink>
-          <DuskLink variant="ghost" href={hero.watch.href}>
+          <GlowLink href={hero.primaryCta.href}>{hero.primaryCta.label}</GlowLink>
+          <GlowLink variant="ghost" href={hero.watch.href}>
             {hero.watch.label}
-          </DuskLink>
+          </GlowLink>
         </div>
       </div>
 

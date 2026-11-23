@@ -8,6 +8,10 @@ import { HeroV3 } from "@/components/home-v3/hero";
 import { PartnershipV3 } from "@/components/home-v3/partnership";
 import { ProgramsV3 } from "@/components/home-v3/programs";
 import { StoriesV3 } from "@/components/home-v3/stories";
+import { CityClassroom } from "@/components/sections/city-classroom";
+import { StartHere } from "@/components/sections/start-here";
+import { StudentFilms } from "@/components/sections/student-films";
+import { WhyItMatters } from "@/components/sections/why-it-matters";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 
@@ -28,11 +32,15 @@ export default function HomeV3() {
       <main id="top" className="flex-1">
         <HeroV3 />
         <AudiencesV3 />
+        <WhyItMatters />
         <AboutV3 />
         <ProgramsV3 />
         <FilmV3 />
+        <StudentFilms />
         <PartnershipV3 />
+        <CityClassroom />
         <StoriesV3 />
+        <StartHere />
         <DonateV3 />
         <Newsletter />
       </main>

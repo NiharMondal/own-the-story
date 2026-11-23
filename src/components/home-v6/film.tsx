@@ -41,8 +41,8 @@ export function FilmV6() {
           </button>
           <div className="absolute inset-x-6 bottom-5 flex items-end justify-between gap-4 md:inset-x-10 md:bottom-8">
             <div>
-              <p className="font-display text-xl md:text-3xl">{film.title}</p>
-              <p className="mt-1 hidden text-sm text-foreground/70 md:block">{film.meta}</p>
+              <p className="font-display text-xl text-white md:text-3xl">{film.title}</p>
+              <p className="mt-1 hidden text-sm text-white/75 md:block">{film.meta}</p>
             </div>
             <span className="rounded-full bg-background/70 px-3 py-1 text-sm tabular-nums backdrop-blur-sm">{film.duration}</span>
           </div>

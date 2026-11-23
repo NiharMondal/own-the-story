@@ -3,7 +3,7 @@ import { Media } from "@/components/site/media";
 import { SpinBadge } from "@/components/site/spin-badge";
 import { mission } from "@/content/home";
 import { photos } from "@/content/photos";
-import { NightLink } from "./night-link";
+import { SlabLink } from "./slab-link";
 
 /** v4 mission: "the lens". A round portrait, looking straight back at you. */
 export function MissionV4() {
@@ -21,7 +21,7 @@ export function MissionV4() {
           </div>
           <SpinBadge
             text="Camera · Craft · Stage"
-            className="absolute -right-4 -bottom-4 size-32 bg-highlight text-primary-foreground md:size-36"
+            className="absolute -right-4 -bottom-4 size-32 bg-highlight text-foreground md:size-36"
           />
         </div>
 
@@ -40,9 +40,9 @@ export function MissionV4() {
             {mission.body}
           </p>
           <div data-reveal className="mt-9">
-            <NightLink variant="line" href={mission.link.href}>
+            <SlabLink variant="line" href={mission.link.href}>
               {mission.link.label}
-            </NightLink>
+            </SlabLink>
           </div>
         </div>
       </div>

@@ -9,33 +9,48 @@ import { PartnerV6 } from "@/components/home-v6/partner";
 import { ProgramsV6 } from "@/components/home-v6/programs";
 import { SeriesV6 } from "@/components/home-v6/series";
 import { SupportV6 } from "@/components/home-v6/support";
+import { CityClassroom } from "@/components/sections/city-classroom";
+import { ClosingStatement } from "@/components/sections/closing-statement";
+import { StudentFilms } from "@/components/sections/student-films";
+import { WhyItMatters } from "@/components/sections/why-it-matters";
 import { SiteFooter } from "@/components/site/site-footer";
 import { SiteHeader } from "@/components/site/site-header";
 
-const display = Fraunces({ variable: "--font-display", subsets: ["latin"], style: ["normal", "italic"] });
+const display = Fraunces({
+  variable: "--font-display",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+});
 
 export const metadata: Metadata = {
   title: "Own the Story (v6)",
 };
 
 /**
- * v6 "dusk": the homepage at golden hour. Plum sky, apricot-to-rose light, a
- * soft serif, and arches everywhere a rectangle would normally go. Centred
- * layouts; stories come before programs, and partnership tiers get a section.
+ * v6 "sunrise": the homepage in morning light. Blush sky, plum ink, an
+ * orange-to-rose glow, a soft serif, and arches everywhere a rectangle would
+ * normally go. Centred layouts; stories come before programs, and partnership
+ * tiers get a section.
  */
 export default function HomeV6() {
   return (
-    <div className={`${display.variable} theme-dusk flex flex-1 flex-col overflow-x-clip bg-background text-foreground`}>
+    <div
+      className={`${display.variable} theme-sunrise flex flex-1 flex-col overflow-x-clip bg-background text-foreground`}
+    >
       <SiteHeader cta={{ label: "Partner With Us", href: "#partner" }} />
       <main id="top" className="flex-1">
         <HeroV6 />
         <MissionV6 />
+        <WhyItMatters headingClass="font-display font-normal tracking-[-0.03em]" />
         <SeriesV6 />
         <ProgramsV6 />
         <ImpactV6 />
         <FilmV6 />
+        <StudentFilms headingClass="font-display font-normal tracking-[-0.03em]" />
+        <CityClassroom headingClass="font-display font-normal tracking-[-0.03em]" />
         <PartnerV6 />
         <SupportV6 />
+        <ClosingStatement headingClass="font-display font-normal tracking-[-0.03em]" />
         <Newsletter />
       </main>
       <SiteFooter motion="blur" />

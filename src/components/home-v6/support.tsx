@@ -3,7 +3,7 @@ import { Media } from "@/components/site/media";
 import { support } from "@/content/home";
 import { links } from "@/content/home-v3";
 import { photos } from "@/content/photos";
-import { DuskLink } from "./dusk-link";
+import { GlowLink } from "./glow-link";
 
 /** v6 support: a panel of sunset light with one more arched window in it. */
 export function SupportV6() {
@@ -22,9 +22,9 @@ export function SupportV6() {
             {support.body}
           </p>
           <div data-reveal className="mt-9">
-            <DuskLink variant="ink" href={links.donate}>
+            <GlowLink variant="ink" href={links.donate}>
               {support.cta.label}
-            </DuskLink>
+            </GlowLink>
           </div>
           <p data-reveal className="mt-8 max-w-md text-sm font-medium opacity-80">
             {support.note}

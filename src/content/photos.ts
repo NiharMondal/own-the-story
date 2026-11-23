@@ -42,6 +42,7 @@ const shots = {
   dumbo: unsplash("1557158090-c4cb768aeba7"), // John Benitez
   crewTeal: unsplash("1742333420195-84c5f5655b2b"), // Ryan Joseph
   redCameraman: unsplash("1611784728558-6c7d9b409cdf"), // Kyle Loftus
+  brooklynBridge: unsplash("1577001092099-24846c097bab"), // Jan Shields
 };
 
 /** v1 to v3 pick pictures by "tone"; each tone maps to one photo. */

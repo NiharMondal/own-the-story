@@ -2,7 +2,7 @@ import { Check } from "lucide-react";
 import { RevealSection } from "@/components/home-v3/reveal";
 import { partnership } from "@/content/home-v3";
 import { cn } from "@/lib/utils";
-import { DuskLink } from "./dusk-link";
+import { GlowLink } from "./glow-link";
 
 /** v6 partnership: three tiers; the middle one is lifted and lit. */
 export function PartnerV6() {
@@ -54,7 +54,7 @@ export function PartnerV6() {
         </ul>
 
         <div data-reveal className="mt-14 flex flex-col items-center gap-4 text-center">
-          <DuskLink href={partnership.cta.href}>{partnership.cta.label}</DuskLink>
+          <GlowLink href={partnership.cta.href}>{partnership.cta.label}</GlowLink>
           <p className="text-sm text-muted-foreground">{partnership.note}</p>
         </div>
       </div>

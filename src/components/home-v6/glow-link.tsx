@@ -1,8 +1,8 @@
 import { ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type DuskLinkProps = React.ComponentProps<"a"> & {
-  /** "glow": apricot-to-rose gradient. "ghost": hairline outline. "ink": dark, for use on the gradient. */
+type GlowLinkProps = React.ComponentProps<"a"> & {
+  /** "glow": orange-to-rose gradient. "ghost": hairline outline. "ink": dark, for use on the gradient. */
   variant?: "glow" | "ghost" | "ink";
 };
 
@@ -13,7 +13,7 @@ const FILLS = {
 };
 
 /** v6 call to action: a soft pill that glows. */
-export function DuskLink({ variant = "glow", className, children, href = "#", ...props }: DuskLinkProps) {
+export function GlowLink({ variant = "glow", className, children, href = "#", ...props }: GlowLinkProps) {
   const external = href.startsWith("http");
 
   return (

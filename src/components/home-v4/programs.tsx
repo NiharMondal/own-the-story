@@ -6,12 +6,12 @@ import { Media } from "@/components/site/media";
 import { programs } from "@/content/home";
 import { photos } from "@/content/photos";
 import { fadeUp, gsap, useSectionMotion } from "@/lib/motion";
-import { NightLink } from "./night-link";
+import { SlabLink } from "./slab-link";
 
 const PHOTOS = [
   {
     src: photos.projector,
-    alt: "A projector throwing light through a dark room",
+    alt: "A projector throwing a beam of light",
   },
   { src: photos.youngCameraman, alt: "A young man filming an event" },
   { src: photos.classroom, alt: "Students in a classroom" },
@@ -104,14 +104,14 @@ export function ProgramsV4() {
                 aria-hidden
                 className="absolute inset-0 bg-[linear-gradient(0deg,rgb(10_10_15/0.92),rgb(10_10_15/0.1)_60%)]"
               />
-              <span className="font-display absolute top-4 left-5 text-6xl leading-none text-transparent [-webkit-text-stroke:1.5px_var(--brand)]">
+              <span className="font-display absolute top-4 left-5 text-6xl leading-none text-transparent [-webkit-text-stroke:1.5px_var(--highlight)]">
                 0{i + 1}
               </span>
-              <div className="absolute inset-x-5 bottom-5">
+              <div className="absolute inset-x-5 bottom-5 text-white">
                 <h3 className="font-display text-4xl leading-none font-normal uppercase md:text-5xl">
                   {item.title}
                 </h3>
-                <p className="mt-3 leading-relaxed text-foreground/80">
+                <p className="mt-3 leading-relaxed text-white/85">
                   {item.body}
                 </p>
               </div>
@@ -121,12 +121,12 @@ export function ProgramsV4() {
             <p className="font-display text-6xl leading-[0.9] uppercase md:text-7xl">
               Your school could be frame 05.
             </p>
-            <NightLink
+            <SlabLink
               href="#contact"
-              className="mt-10 self-start bg-primary-foreground text-brand hover:bg-white hover:text-primary-foreground"
+              className="mt-10 self-start bg-highlight text-foreground hover:bg-white"
             >
               Partner with us
-            </NightLink>
+            </SlabLink>
           </li>
         </ol>
       </div>

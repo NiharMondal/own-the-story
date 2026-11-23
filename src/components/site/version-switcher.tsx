@@ -8,9 +8,9 @@ const VERSIONS = [
   { href: "/", label: "1", name: "Sage" },
   { href: "/v2", label: "2", name: "Paper" },
   { href: "/v3", label: "3", name: "Clear" },
-  { href: "/v4", label: "4", name: "Night" },
+  { href: "/v4", label: "4", name: "Matinee" },
   { href: "/v5", label: "5", name: "Pop" },
-  { href: "/v6", label: "6", name: "Dusk" },
+  { href: "/v6", label: "6", name: "Sunrise" },
 ];
 
 /** Prototype aid: jump between the homepage designs. Remove before launch. */
