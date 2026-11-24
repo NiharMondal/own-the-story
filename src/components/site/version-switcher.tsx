@@ -11,6 +11,7 @@ const VERSIONS = [
   { href: "/v4", label: "4", name: "Matinee" },
   { href: "/v5", label: "5", name: "Pop" },
   { href: "/v6", label: "6", name: "Sunrise" },
+  { href: "/v7", label: "7", name: "Aperture" },
 ];
 
 /** Prototype aid: jump between the homepage designs. Remove before launch. */

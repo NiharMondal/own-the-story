@@ -3,11 +3,14 @@
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { newsletter } from "@/content/home";
-import { blurIn, fadeUp, useSectionMotion } from "@/lib/motion";
+import { blurIn, fadeUp, shutterIn, useSectionMotion } from "@/lib/motion";
 
 type NewsletterProps = {
-  /** "rise": both columns fade up. "slide": columns glide in from opposite sides out of a blur. */
-  motion?: "rise" | "slide";
+  /**
+   * "rise": both columns fade up. "slide": columns glide in from opposite sides out of a blur.
+   * "shutter": a slanted blade uncovers each column.
+   */
+  motion?: "rise" | "slide" | "shutter";
 };
 
 export function Newsletter({ motion = "rise" }: NewsletterProps) {
@@ -19,6 +22,8 @@ export function Newsletter({ motion = "rise" }: NewsletterProps) {
     if (motion === "slide") {
       blurIn(copy, { trigger: el, x: -60, y: 0 });
       blurIn(form, { trigger: el, x: 60, y: 0, delay: 0.1 });
+    } else if (motion === "shutter") {
+      shutterIn([copy, form], { trigger: el, stagger: 0.14 });
     } else {
       fadeUp([copy, form], { trigger: el, stagger: 0.12 });
     }

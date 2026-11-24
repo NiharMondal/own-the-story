@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { footer } from "@/content/home";
-import { blurIn, fadeUp, useSectionMotion } from "@/lib/motion";
+import { blurIn, fadeUp, shutterIn, useSectionMotion } from "@/lib/motion";
 import { Logo } from "./logo";
 import { FacebookIcon, InstagramIcon, LinkedinIcon } from "./social-icons";
 
@@ -13,8 +13,8 @@ const SOCIALS = [
 ];
 
 type SiteFooterProps = {
-  /** "rise": columns fade up. "blur": every link focuses in, one after another. */
-  motion?: "rise" | "blur";
+  /** "rise": columns fade up. "blur": every link focuses in, one after another. "shutter": columns are wiped in. */
+  motion?: "rise" | "blur" | "shutter";
 };
 
 export function SiteFooter({ motion = "rise" }: SiteFooterProps) {
@@ -23,6 +23,8 @@ export function SiteFooter({ motion = "rise" }: SiteFooterProps) {
   useSectionMotion(root, (el) => {
     if (motion === "blur") {
       blurIn(el.querySelectorAll("[data-fade] > :not(ul), [data-fade] li"), { trigger: el, stagger: 0.03, y: 12 });
+    } else if (motion === "shutter") {
+      shutterIn(el.querySelectorAll("[data-fade]"), { trigger: el, stagger: 0.07 });
     } else {
       fadeUp(el.querySelectorAll("[data-fade]"), { trigger: el, stagger: 0.08, y: 30 });
     }

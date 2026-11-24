@@ -4,9 +4,9 @@ import { cn } from "@/lib/utils";
 import type { SectionProps } from "./why-it-matters";
 
 /** The last word before the footer: one sentence, set as large as it will go. */
-export function ClosingStatement({ headingClass = "font-bold tracking-[-0.02em]", className }: SectionProps) {
+export function ClosingStatement({ headingClass = "font-bold tracking-[-0.02em]", className, motion }: SectionProps) {
   return (
-    <RevealSection aria-labelledby="closing-heading" className={cn("bg-secondary py-28 text-center md:py-40", className)}>
+    <RevealSection motion={motion} aria-labelledby="closing-heading" className={cn("bg-secondary py-28 text-center md:py-40", className)}>
       <div className="container-site">
         <h2
           data-reveal

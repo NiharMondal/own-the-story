@@ -136,3 +136,82 @@ export function blurIn(
       opts.immediate || !opts.trigger ? undefined : { trigger: opts.trigger, start: "top 85%", toggleActions: "play none none none" },
   });
 }
+
+/*
+ * v7 "aperture" vocabulary: nothing fades. Things are uncovered by a shutter,
+ * opened by an iris, or flipped over like the letters on a departures board.
+ */
+
+// A slanted blade: zero width at the left edge, then sweeping past the right.
+const SHUTTER_SHUT = "polygon(-15% 0%, -15% 0%, -30% 100%, -30% 100%)";
+const SHUTTER_OPEN = "polygon(-15% 0%, 115% 0%, 100% 100%, -30% 100%)";
+
+/** A slanted shutter blade sweeps across and uncovers each element. */
+export function shutterIn(targets: gsap.TweenTarget, opts: RevealOptions & { stagger?: number } = {}) {
+  return gsap.fromTo(
+    targets,
+    { clipPath: SHUTTER_SHUT, x: -16 },
+    {
+      clipPath: SHUTTER_OPEN,
+      x: 0,
+      duration: 1.15,
+      ease: "power4.inOut",
+      stagger: opts.stagger ?? 0.09,
+      delay: opts.delay,
+      clearProps: "clipPath,transform",
+      scrollTrigger:
+        opts.immediate || !opts.trigger
+          ? undefined
+          : { trigger: opts.trigger, start: "top 85%", toggleActions: "play none none none" },
+    },
+  );
+}
+
+/** Letters flip down into place one by one, like a split-flap board. */
+export function flipChars(target: Element | null, opts: RevealOptions & { stagger?: number } = {}) {
+  if (!target) return;
+  SplitText.create(target, {
+    type: "words,chars",
+    autoSplit: true,
+    onSplit: (self) => {
+      gsap.set(self.words, { perspective: 600 });
+      return gsap.fromTo(
+        self.chars,
+        { rotationX: -100, autoAlpha: 0, transformOrigin: "50% 50% -0.3em" },
+        {
+          rotationX: 0,
+          autoAlpha: 1,
+          duration: 1.1,
+          ease: "back.out(1.5)",
+          stagger: opts.stagger ?? 0.022,
+          delay: opts.delay,
+          scrollTrigger: opts.immediate
+            ? undefined
+            : { trigger: opts.trigger ?? target, start: "top 85%", toggleActions: "play none none none" },
+        },
+      );
+    },
+  });
+}
+
+/**
+ * A round iris opens over each frame while the picture inside untwists, like
+ * a lens being focused.
+ */
+export function irisOpen(frames: Element[], opts: RevealOptions & { stagger?: number } = {}) {
+  frames.forEach((frame, i) => {
+    const inner = frame.querySelector("[data-media-inner]");
+    const tl = gsap.timeline({
+      delay: (opts.delay ?? 0) + i * (opts.stagger ?? 0.14),
+      scrollTrigger: opts.immediate
+        ? undefined
+        : { trigger: opts.trigger ?? frame, start: "top 85%", toggleActions: "play none none none" },
+    });
+    tl.fromTo(
+      frame,
+      { clipPath: "circle(0% at 50% 50%)" },
+      { clipPath: "circle(75% at 50% 50%)", duration: 1.5, ease: "expo.inOut", clearProps: "clipPath" },
+    );
+    if (inner) tl.fromTo(inner, { scale: 1.3, rotation: -10 }, { scale: 1, rotation: 0, duration: 2, ease: EASE }, 0);
+  });
+}

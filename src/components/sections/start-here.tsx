@@ -5,9 +5,9 @@ import { cn } from "@/lib/utils";
 import type { SectionProps } from "./why-it-matters";
 
 /** "Young filmmakers start here." A slim band that sends young people to the programs. */
-export function StartHere({ headingClass = "font-bold tracking-[-0.02em]", className }: SectionProps) {
+export function StartHere({ headingClass = "font-bold tracking-[-0.02em]", className, motion }: SectionProps) {
   return (
-    <RevealSection aria-labelledby="start-heading" className={cn("py-10 md:py-14", className)}>
+    <RevealSection motion={motion} aria-labelledby="start-heading" className={cn("py-10 md:py-14", className)}>
       <div className="container-site">
         <div className="flex flex-col gap-6 rounded-2xl border border-border bg-card p-7 md:flex-row md:items-center md:justify-between md:p-10">
           <div>

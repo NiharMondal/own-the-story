@@ -19,9 +19,9 @@ const SHOTS = [
  * "The city is our classroom." A strip of location photos that drifts past
  * edge to edge; it pauses on hover and stands still for reduced-motion users.
  */
-export function CityClassroom({ headingClass = "font-bold tracking-[-0.02em]", className }: SectionProps) {
+export function CityClassroom({ headingClass = "font-bold tracking-[-0.02em]", className, motion, mediaClass = "rounded-xl" }: SectionProps) {
   return (
-    <RevealSection aria-labelledby="city-heading" className={cn("overflow-hidden py-24 md:py-32", className)}>
+    <RevealSection motion={motion} aria-labelledby="city-heading" className={cn("overflow-hidden py-24 md:py-32", className)}>
       <div className="container-site flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
         <div>
           <p data-reveal className="eyebrow">
@@ -49,7 +49,7 @@ export function CityClassroom({ headingClass = "font-bold tracking-[-0.02em]", c
                       src={shot.src}
                       alt={copy === 0 ? shot.alt : ""}
                       sizes="(min-width: 768px) 24rem, 62vw"
-                      className={cn("rounded-xl", i % 2 === 0 ? "aspect-[4/5]" : "mt-10 aspect-square")}
+                      className={cn(mediaClass, i % 2 === 0 ? "aspect-[4/5]" : "mt-10 aspect-square")}
                     />
                     <figcaption className="mt-3 flex items-center gap-2 text-sm font-medium">
                       <span className="size-1.5 rounded-full bg-brand" />

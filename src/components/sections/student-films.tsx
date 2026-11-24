@@ -14,9 +14,9 @@ const STILLS = [
 ];
 
 /** "Four films. Four directors." A row of posters for work made by students. */
-export function StudentFilms({ headingClass = "font-bold tracking-[-0.02em]", className }: SectionProps) {
+export function StudentFilms({ headingClass = "font-bold tracking-[-0.02em]", className, motion, mediaClass = "rounded-xl" }: SectionProps) {
   return (
-    <RevealSection aria-labelledby="films-heading" className={cn("py-24 md:py-32", className)}>
+    <RevealSection motion={motion} aria-labelledby="films-heading" className={cn("py-24 md:py-32", className)}>
       <div className="container-site">
         <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
           <div>
@@ -47,7 +47,7 @@ export function StudentFilms({ headingClass = "font-bold tracking-[-0.02em]", cl
                   alt={STILLS[i].alt}
                   hoverZoom
                   sizes="(min-width: 1024px) 25vw, 50vw"
-                  className="aspect-[3/4] rounded-xl"
+                  className={cn("aspect-[3/4]", mediaClass)}
                 >
                   <div aria-hidden className="absolute inset-0 bg-[linear-gradient(0deg,rgb(0_0_0/0.55),transparent_45%)]" />
                   <span className="absolute bottom-4 left-4 grid size-11 place-items-center rounded-full bg-brand text-primary-foreground transition-transform duration-300 group-hover:scale-110">

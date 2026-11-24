@@ -322,3 +322,87 @@ body:has(.theme-pop) {
 body:has(.theme-sunrise) {
   background-color: #fff5ef;
 }
+
+/* v7 "aperture": the homepage seen through a camera. Cool graphite on lens-grey,
+   a REC red for actions and an anaglyph cyan beside it. Shapes are cut, not
+   rounded: hexagons for aperture blades, circles for lenses, and chamfered
+   corners like a viewfinder. */
+.theme-aperture {
+  --brand: #d81f2a;
+  --highlight: #1597c9;
+  --background: #eceef1;
+  --foreground: #0f1218;
+  --card: #f8f9fb;
+  --card-foreground: #0f1218;
+  --popover: #f8f9fb;
+  --popover-foreground: #0f1218;
+  --primary: var(--brand);
+  --primary-foreground: #ffffff;
+  --secondary: #dfe3e8;
+  --secondary-foreground: #0f1218;
+  --muted: #dfe3e8;
+  --muted-foreground: #525a67;
+  --accent: #dfe3e8;
+  --accent-foreground: #0f1218;
+  --border: rgb(15 18 24 / 0.14);
+  --input: rgb(15 18 24 / 0.32);
+  --ring: var(--brand);
+  --radius: 0.125rem;
+  color-scheme: light;
+}
+:root:has(.theme-aperture) {
+  color-scheme: light;
+}
+body:has(.theme-aperture) {
+  background-color: #eceef1;
+}
+/* Eyebrows read like camera readouts here. Unlayered, so it wins over the utility. */
+.theme-aperture .eyebrow {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-variation-settings: normal;
+  letter-spacing: 0.2em;
+}
+.theme-aperture .eyebrow::before {
+  content: "\25CF\00A0\00A0";
+}
+
+/* A regular pointy-top hexagon. Width is set by the element; height follows.
+   The corners are worked out from two variables so GSAP can open it like an
+   aperture: --hex-s scales it from the centre (0 to 1) and --hex-a turns the
+   blades. At the defaults it is a plain hexagon. */
+@utility hex {
+  --hex-s: 1;
+  --hex-a: 0deg;
+  aspect-ratio: 0.866;
+  clip-path: polygon(
+    calc(50% + var(--hex-s) * 57.735% * cos(var(--hex-a) - 90deg)) calc(50% + var(--hex-s) * 50% * sin(var(--hex-a) - 90deg)),
+    calc(50% + var(--hex-s) * 57.735% * cos(var(--hex-a) - 30deg)) calc(50% + var(--hex-s) * 50% * sin(var(--hex-a) - 30deg)),
+    calc(50% + var(--hex-s) * 57.735% * cos(var(--hex-a) + 30deg)) calc(50% + var(--hex-s) * 50% * sin(var(--hex-a) + 30deg)),
+    calc(50% + var(--hex-s) * 57.735% * cos(var(--hex-a) + 90deg)) calc(50% + var(--hex-s) * 50% * sin(var(--hex-a) + 90deg)),
+    calc(50% + var(--hex-s) * 57.735% * cos(var(--hex-a) + 150deg)) calc(50% + var(--hex-s) * 50% * sin(var(--hex-a) + 150deg)),
+    calc(50% + var(--hex-s) * 57.735% * cos(var(--hex-a) + 210deg)) calc(50% + var(--hex-s) * 50% * sin(var(--hex-a) + 210deg))
+  );
+}
+
+/* Top-left and bottom-right corners cut off. Set the depth with [--cut:2rem]. */
+@utility chamfer {
+  clip-path: polygon(
+    var(--cut, 0.75rem) 0,
+    100% 0,
+    100% calc(100% - var(--cut, 0.75rem)),
+    calc(100% - var(--cut, 0.75rem)) 100%,
+    0 100%,
+    0 var(--cut, 0.75rem)
+  );
+}
+
+@theme {
+  --animate-blink: blink 1.2s steps(1, end) infinite;
+  --animate-spin-slower: spin 60s linear infinite;
+
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+}
